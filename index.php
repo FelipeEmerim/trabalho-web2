@@ -3,7 +3,7 @@
 header("Content-type:text/html;charset='utf-8'",true);
 $pdo = new PDO('mysql:host=localhost;dbname=loja_virtual', 'root', '');
 
-$comando = $pdo->prepare("Select * FROM produtos ORDER BY rand() LIMIT 4");
+$comando = $pdo->prepare("Select * FROM produtos ORDER BY rand() LIMIT 8");
 $comando->execute();
 $data = $comando->fetchAll(PDO::FETCH_ASSOC);
 ?>
@@ -58,11 +58,13 @@ $data = $comando->fetchAll(PDO::FETCH_ASSOC);
         height: 350px;
         -webkit-text-stroke-width: 1px;
         -webkit-text-stroke-color: #ffffff;
+          width:100%;
       }
 
       .item{
         font-family: 'MedievalSharp', cursive;
         color: #a07e04;
+          width:100%;
       }
 
       #busca{
