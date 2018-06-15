@@ -178,6 +178,16 @@
 <!-- Page Content -->
 <div class="container">
 
+	<div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="button"> Categorias
+            <span class="caret"></span></button>
+        <ul class="dropdown-menu" id="itens">
+            <li><a href="#">Poções</a></li>
+            <li><a href="#">Força</a></li>
+            <li><a href="#">Proteção</a></li>
+        </ul>
+    </div>
+
     <!-- Jumbotron Header -->
     <header class="jumbotron my-4" id="retangulo">
         <h1 class="display-3"> Bem-Vindo!!!</h1>
@@ -188,10 +198,10 @@
     <!-- Page Features -->
     <div class="row text-center">
     	<div id = "prod">
-    		<img id = "imgprod" src = "https://pre00.deviantart.net/b631/th/pre/f/2015/229/8/3/skyrim_potions_2nd_set___tes_5_by_etrelley-d962aqm.png">;
+    		<img id = "imgprod" src = "https://pre00.deviantart.net/b631/th/pre/f/2015/229/8/3/skyrim_potions_2nd_set___tes_5_by_etrelley-d962aqm.png">
 
     		<div>
-    		
+
     		</div>
 
     	</div>

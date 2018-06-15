@@ -2,7 +2,6 @@
 <?php
 header("Content-type:text/html;charset='utf-8'",true);
 $pdo = new PDO('mysql:host=localhost;dbname=loja_virtual', 'root', '');
-
 $comando = $pdo->prepare("Select * FROM produtos ORDER BY rand() LIMIT 4");
 $comando->execute();
 $data = $comando->fetchAll(PDO::FETCH_ASSOC);
@@ -30,28 +29,20 @@ $data = $comando->fetchAll(PDO::FETCH_ASSOC);
 
     <style>
         @import url('https://fonts.googleapis.com/css?family=MedievalSharp');
-
-
          #container{
         font-family: 'MedievalSharp', cursive;
         font-size: 20px;
         height: 40px;
         margin-left: 5px;
-
       }
-
       #logo{
-
         color: #a07e04;
         font-size: 30px;
       }
-
       #home, #login, #ver, #fale{
         color: #a07e04;
       }
-
       #retangulo{
-
         background-image: url("https://pre00.deviantart.net/b631/th/pre/f/2015/229/8/3/skyrim_potions_2nd_set___tes_5_by_etrelley-d962aqm.png");
         font-family: 'MedievalSharp', cursive;
         color: #a07e04;
@@ -59,12 +50,10 @@ $data = $comando->fetchAll(PDO::FETCH_ASSOC);
         -webkit-text-stroke-width: 1px;
         -webkit-text-stroke-color: #ffffff;
       }
-
       .item{
         font-family: 'MedievalSharp', cursive;
         color: #a07e04;
       }
-
       #busca{
         background-color:white;
         border:solid 1px;
@@ -74,7 +63,6 @@ $data = $comando->fetchAll(PDO::FETCH_ASSOC);
         position: relative;
         left: 1000px;
       }
-
       #txtBusca{
         float:left;
         background-color:transparent;
@@ -93,30 +81,23 @@ $data = $comando->fetchAll(PDO::FETCH_ASSOC);
         width:45px;
         background: #a07e04;
       }
-
       html, body{
         height: 100%;
         width: 100%;
         background: black;
-
       }
-
       .dropdown{
         position: relative;
         left: -13.6%;
         top: 68px;
-
       }
-
       #button{
         background: #4e555b;
         color: #a07e04;
         font-family: 'MedievalSharp', cursive;
         font-size: 20px;
         border: none;
-
       }
-
       #itens{
         background: transparent;
         color: #a07e04;
@@ -125,14 +106,10 @@ $data = $comando->fetchAll(PDO::FETCH_ASSOC);
         width: 40px;
         position:absolute;
         margin-left:3%;
-
       }
-
         a{
-
             color: #a07e04;
         }
-
     </style>
 
 
@@ -238,4 +215,3 @@ $data = $comando->fetchAll(PDO::FETCH_ASSOC);
 </body>
 
 </html>
-
