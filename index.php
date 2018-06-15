@@ -1,5 +1,14 @@
 <!DOCTYPE html>
-<html lang="pt_BR">
+<?php
+header("Content-type:text/html;charset='utf-8'",true);
+$pdo = new PDO('mysql:host=localhost;dbname=loja_virtual', 'root', '');
+
+$comando = $pdo->prepare("Select * FROM produtos ORDER BY rand() LIMIT 4");
+$comando->execute();
+$data = $comando->fetchAll(PDO::FETCH_ASSOC);
+?>
+
+<html lang="en">
 
 <head>
 
@@ -25,7 +34,10 @@
 
         #container{
             font-family: 'MedievalSharp', cursive;
-            font-size: 25px;
+            font-size: 20px;
+            height: 40px;
+            margin-left: 5px;
+
         }
 
         #logo{
@@ -48,13 +60,9 @@
             -webkit-text-stroke-color: #ffffff;
         }
 
-        #form{
+        .item{
             font-family: 'MedievalSharp', cursive;
             color: #a07e04;
-            margin-left: 330px;
-            border: 1px solid #856404;
-            margin-top: 20px;
-            width: 500px;
         }
         #busca{
             background-color:white;
@@ -87,19 +95,39 @@
 
         html, body{
             height: 100%;
+            width: 100%;
             background: black;
 
         }
 
-        #foot{
-            height: 80px;
-            margin-top: 20px;
+        .dropdown{
+            position: relative;
+            left: -230px;
+            top: 50px;
+            width: 100px;
 
         }
 
+        #button{
 
+            background: #4e555b;
+            color: #a07e04;
+            font-family: 'MedievalSharp', cursive;
+            font-size: 25px;
+            border: none;
+        }
 
+        #itens{
+            background: #4e555b;
+            color: #a07e04;
+            font-family: 'MedievalSharp', cursive;
 
+        }
+
+        a{
+
+            color: #a07e04;
+        }
 
     </style>
 
@@ -112,7 +140,6 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container" id="container">
-
         <a class="navbar-brand" href="#" id="logo"> Ocarina </a>
 
         <div id="busca">
@@ -120,23 +147,24 @@
             <input type="submit" name="buscar" value="Go" id="buscar">
         </div>
 
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="http://localhost:63342/Projeto_Web/startbootstrap-heroic-features-gh-pages/index.html?_ijt=fqj38ecpmtudnc82f8cf6i51sd" id="home"> Home <span class="sr-only">(current)</span>
+                    <a class="nav-link" href="http://localhost/Projeto_Web/startbootstrap-heroic-features-gh-pages/index.html?_ijt=fqj38ecpmtudnc82f8cf6i51sd" id="home"> Home <span class="sr-only">(current)</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost:63342/Projeto_Web/startbootstrap-heroic-features-gh-pages/cadastro.html?_ijt=i6m50c571ockul4vr2k4ulfr5v" id="login">Login</a>
+                    <a class="nav-link" href="http://localhost/Projeto_Web/startbootstrap-heroic-features-gh-pages/cadastro.html?_ijt=i6m50c571ockul4vr2k4ulfr5v" id="login">Login</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#" id="ver"> Ver Carrinho</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost:63342/Projeto_Web/startbootstrap-heroic-features-gh-pages/faleConosco.html?_ijt=hrv1u29275kmj6eojatgt34n62" id="fale">Fale Conosco</a>
+                    <a class="nav-link" href="http://localhost/Projeto_Web/startbootstrap-heroic-features-gh-pages/faleConosco.html?_ijt=hrv1u29275kmj6eojatgt34n62" id="fale">Fale Conosco</a>
                 </li>
             </ul>
         </div>
@@ -146,37 +174,45 @@
 <!-- Page Content -->
 <div class="container">
 
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="button"> Categorias
+            <span class="caret"></span></button>
+        <ul class="dropdown-menu" id="itens">
+            <li><a href="#">Poções</a></li>
+            <li><a href="#">Força</a></li>
+            <li><a href="#">Proteção</a></li>
+        </ul>
+    </div>
+
     <!-- Jumbotron Header -->
     <header class="jumbotron my-4" id="retangulo">
-        <h1 class="display-3"> Fale conosco!!!</h1>
-        <p class="lead"> Hey estranho, aqui é nosso canal de contato. </p>
+        <h1 class="display-3"> Bem-Vindo!!!</h1>
+        <p class="lead"> Eu tenho uma seleção de coisas boas para vender, Estranho. O que você vai comprar?</p>
 
     </header>
 
     <!-- Page Features -->
     <div class="row text-center">
 
-
-        <form action="#" method="POST" id="form">
-            <input type="hidden" name="recipient" value="testeiseuemail@gmail.com"> <!-- Pode ser qualquer endereço de email -->
-            <input type="hidden" name="redirect" value="http://seudominio"> <!-- Após o envio, o usuário será redirecionado para a página configurada aqui -->
-            <input type="hidden" name="subject" value="teste de assunto">  <!-- Assunto da mensagem -->
-            <input type="hidden" name="email" value="email@doseudominio">   <!-- Deve ser uma conta de email ativa em seu domínio -->
-
-                <label for="nome">Nome:</label> <br/>
-                <input id="nome" type="text" size="30" name="nome"> <br/>
-
-
-                <label for="email">E-mail:</label> <br/>
-                <input id="email" type="text" size="30" name="replyto"> <br/>
-
-                <label for="comentarios">Comentários:</label> <br/>
-                <textarea  id="comentarios" name = "comentarios" rows="10" cols="40" maxlength="500"></textarea> <br/>
-
-                <input type="submit" name="BTEnvia" value="Enviar">
-                <input type="reset" name="BTApaga" value="Apagar">
-        </form>
-
+        <?php
+        foreach($data as $row):
+            ?>
+            <div class="col-lg-3 col-md-6 mb-4" id="<?=htmlspecialchars($row['nome'])?>">
+                <div class="card">
+                    <img class="card-img-top" src="<?=htmlspecialchars($row['imagem'])?>" height="270" alt="">
+                    <div class="card-body item">
+                        <h4 class="card-title"> <?=$row['nome']?> </h4>
+                        <p class="card-text"> <?=$row['descricao']?></p>
+                        <p class="card-text"> R$ <?=$row['preco']?></p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn btn-primary"> Adicionar ao carrinho </a>
+                    </div>
+                </div>
+            </div>
+        <?php
+        endforeach;
+        ?>
     </div>
     <!-- /.row -->
 
@@ -184,7 +220,7 @@
 <!-- /.container -->
 
 <!-- Footer -->
-<footer class="py-5 bg-dark" id="foot">
+<footer class="py-5 bg-dark">
     <div class="container">
         <p class="m-0 text-center text-white">Copyright &copy; Ocarina 2018</p>
     </div>
@@ -198,3 +234,4 @@
 </body>
 
 </html>
+
