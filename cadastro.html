@@ -25,7 +25,9 @@
 
         #container{
             font-family: 'MedievalSharp', cursive;
-            font-size: 25px;
+            font-size: 20px;
+            height: 40px;
+            margin-left: 5px;
         }
 
         #logo{
@@ -93,16 +95,38 @@
             background: black;
 
         }
+        .dropdown{
+        position: relative;
+        left: -13.6%;
+        top: 68px;
+      }
+      #button{
+        background: #4e555b;
+        color: #a07e04;
+        font-family: 'MedievalSharp', cursive;
+        font-size: 20px;
+        border: none;
+      }
+      #itens{
+        background: transparent;
+        color: #a07e04;
+        font-family: 'MedievalSharp', cursive;
+        font-size: 18px;
+        width: 40px;
+        position:absolute;
+        margin-left:3%;
+      }
+
+        a{
+            color: #a07e04;
+        }
+
+
 
         #footer{
             height: 80px;
             margin-top: 153px;
         }
-
-
-
-
-
 
     </style>
 
@@ -149,6 +173,16 @@
 
 <!-- Page Content -->
 <div class="container">
+
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="button"> Categorias
+            <span class="caret"></span></button>
+        <ul class="dropdown-menu" id="itens">
+            <li><a href="#">Poções</a></li>
+            <li><a href="#">Força</a></li>
+            <li><a href="#">Proteção</a></li>
+        </ul>
+    </div>
 
     <!-- Jumbotron Header -->
     <header class="jumbotron my-4" id="retangulo">
