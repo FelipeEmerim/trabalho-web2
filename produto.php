@@ -1,5 +1,22 @@
 <!DOCTYPE html>
 
+<?php
+    if(!(isset($_GET['produto']))){
+        header('Location: index.php');
+    }
+
+    $pdo = new PDO('mysql:host=localhost;dbname=loja_virtual', 'root', '');
+
+    $comando = $pdo->prepare("SELECT * FROM produtos WHERE codigo = ?");
+    $comando->execute(array($_GET['produto']));
+    $produto = $comando->fetch(PDO::FETCH_ASSOC);
+
+    $comando = $pdo->prepare("SELECT * FROM produtos WHERE categoria = ? AND codigo != ? ORDER BY rand() LIMIT 4");
+    $comando->execute(array($produto['categoria'], $produto['codigo']));
+    $data = $comando->fetchAll(PDO::FETCH_ASSOC);
+
+?>
+
 <html lang="en">
 
 <head>
@@ -21,36 +38,40 @@
     <link rel="stylesheet" type="text/css" href="pageStyle.css">
 
     <style>
-        <style>
-        
-        @import url('https://fonts.googleapis.com/css?family=MedievalSharp');
-        
-        #container{
+    @import url('https://fonts.googleapis.com/css?family=MedievalSharp');
+
+    #container{
         font-family: 'MedievalSharp', cursive;
         font-size: 20px;
         height: 40px;
         margin-left: 5px;
-      }
-      #logo{
+    }
+
+    #logo{
         color: #a07e04;
         font-size: 30px;
-      }
-      #home, #login, #ver, #fale{
+    }
+
+    #home, #login, #ver, #fale{
         color: #a07e04;
-      }
-      #retangulo{
+    }
+
+    #retangulo{
         background-image: url("https://pre00.deviantart.net/b631/th/pre/f/2015/229/8/3/skyrim_potions_2nd_set___tes_5_by_etrelley-d962aqm.png");
         font-family: 'MedievalSharp', cursive;
         color: #a07e04;
         height: 350px;
         -webkit-text-stroke-width: 1px;
         -webkit-text-stroke-color: #ffffff;
-      }
-      .item{
+    }
+
+    .item{
         font-family: 'MedievalSharp', cursive;
+        font-size:18px;
         color: #a07e04;
-      }
-      #busca{
+    }
+
+    #busca{
         background-color:white;
         border:solid 1px;
         border-radius:15px;
@@ -58,8 +79,9 @@
         height: 35px;
         position: relative;
         left: 1000px;
-      }
-      #txtBusca{
+    }
+
+    #txtBusca{
         float:left;
         background-color:transparent;
         padding-left:5px;
@@ -67,8 +89,9 @@
         height:35px;
         width:260px;
         border-radius:15px;
-      }
-      #buscar{
+    }
+
+    #buscar{
         position: relative;
         left: 210px;
         top: -32px;
@@ -76,25 +99,27 @@
         border-radius:12px;
         width:45px;
         background: #a07e04;
-      }
-      html, body{
-        height: 100%;
-        width: 100%;
+    }
+
+    html, body{
         background: black;
-      }
-      .dropdown{
+    }
+
+    .dropdown{
         position: relative;
         left: -13.6%;
         top: 68px;
-      }
-      #button{
+    }
+
+    #button{
         background: #4e555b;
         color: #a07e04;
         font-family: 'MedievalSharp', cursive;
         font-size: 20px;
         border: none;
-      }
-      #itens{
+    }
+
+    #itens{
         background: transparent;
         color: #a07e04;
         font-family: 'MedievalSharp', cursive;
@@ -102,35 +127,52 @@
         width: 40px;
         position:absolute;
         margin-left:3%;
-      }
+    }
 
-        a{
-            color: #a07e04;
-        }
+    a{
+        color: #a07e04;
+    }
 
-        #prod{
-        	width: 1100px;
-    		height: 400px;
-    		background: white;
-    		margin-top: 2%;
-    		margin-bottom: 5%;
-    		margin-left: 2%;
-    		border-radius: 3%;
-    		font-family: 'MedievalSharp', cursive;
+    #prod{
+        width: 1100px;
+        height: 450px;
+        background: white;
+        margin-top: 2%;
+        margin-bottom: 5%;
+        margin-left: 2%;
+        border-radius: 3%;
+        font-family: 'MedievalSharp', cursive;
 
-        }
+    }
 
-        
+    #imgprod{
+        width: 380px;
+        height: 380px;
+        border-radius: 3%;
+        margin-top: 1%;
+        margin-left: 1%;
+        float: left;
 
-        #imgprod{
-        	width: 380px;
-    		height: 380px;
-    		border-radius: 3%;
-    		margin-top: 1%;
-    		margin-left: 1%;
-    		float: left;
-        	
-        }
+    }
+
+    #titulo, #preco, #quantidade, #soma, #diminui, #recomendados, #container_quant{
+        font-size: 40px;
+    }
+
+    .botao{
+        position:relative;
+    }
+    #soma{
+        left:20px;
+        top:-10px;
+        cursor:pointer;
+    }
+
+    #diminui{
+        top:15px;
+        left:-14px;
+        cursor:pointer;
+    }
 
     </style>
 
@@ -140,7 +182,6 @@
 <body>
 
 <!-- Navigation -->
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container" id="container">
 
@@ -158,17 +199,17 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="http://localhost:63342/Projeto_Web/startbootstrap-heroic-features-gh-pages/index.html?_ijt=fqj38ecpmtudnc82f8cf6i51sd" id="home"> Home <span class="sr-only">(current)</span>
+                    <a class="nav-link" href="index.php" id="home"> Home <span class="sr-only">(current)</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost:63342/Projeto_Web/startbootstrap-heroic-features-gh-pages/cadastro.html?_ijt=i6m50c571ockul4vr2k4ulfr5v" id="login">Login</a>
+                    <a class="nav-link" href="cadastro.php" id="login">Login</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#" id="ver"> Ver Carrinho</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost:63342/Projeto_Web/startbootstrap-heroic-features-gh-pages/faleConosco.html?_ijt=hrv1u29275kmj6eojatgt34n62" id="fale">Fale Conosco</a>
+                    <a class="nav-link" href="faleConosco.php" id="fale">Fale Conosco</a>
                 </li>
             </ul>
         </div>
@@ -198,9 +239,19 @@
     <!-- Page Features -->
     <div class="row text-center">
     	<div id = "prod">
-    		<img id = "imgprod" src = "https://pre00.deviantart.net/b631/th/pre/f/2015/229/8/3/skyrim_potions_2nd_set___tes_5_by_etrelley-d962aqm.png">
+    		<img id = "imgprod" src = "<?=htmlspecialchars($produto['imagem'])?>">
 
     		<div>
+                <span id="titulo" class="item"><?=htmlspecialchars($produto['nome'])?></span><br>
+                <span id = "descricao" class="item"><?=htmlspecialchars($produto['descricao'])?></span><br><br>
+                <span id="preco" class="item">Preço: <?=htmlspecialchars($produto['preco'])?></span><br><br>
+                <span class="item" id="container_quant">
+                    Quantidade: <br>
+                    <span id="soma" class="botao" onclick="soma()">+</span>
+                    <span id="diminui" onclick="diminui()" class="botao">-</span>
+                    <span id="quantidade">1</span><br>
+                </span>
+                <a href="#" class="btn btn-primary"> Adicionar ao carrinho </a>
 
     		</div>
 
@@ -210,6 +261,28 @@
 
     </div>
     <!-- /.row -->
+    <span id="recomendados" class="item">Recomendados</span>
+    <div class="row text-center">
+        <?php
+        foreach($data as $row):
+            ?>
+            <div class="col-lg-3 col-md-6 mb-4" id="<?=htmlspecialchars($row['nome'])?>">
+                <div class="card">
+                    <img class="card-img-top" src="<?=htmlspecialchars($row['imagem'])?>" height="270" alt="">
+                    <div class="card-body item">
+                        <h4 class="card-title"> <?=htmlspecialchars($row['nome'])?> </h4>
+                        <p class="card-text"> <?=htmlspecialchars($row['descricao'])?></p>
+                        <p class="card-text"> R$ <?=htmlspecialchars($row['preco'])?></p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="<?="produto.php?produto=$row[codigo]"?>" class="btn btn-primary"> Ver detalhes </a>
+                    </div>
+                </div>
+            </div>
+        <?php
+        endforeach;
+        ?>
+    </div>
 
 </div>
 <!-- /.container -->
@@ -227,5 +300,30 @@
 <script src="startbootstrap-heroic-features-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
+<script>
+    "use strict";
+    function soma(){
+
+        let element = document.getElementById("quantidade");
+        let num = parseInt(element.innerHTML);
+        if(num < 9){
+            num++;
+            element.innerHTML = num.toString();
+        }
+
+
+    }
+
+    function diminui(){
+
+        let element = document.getElementById("quantidade");
+        let num = parseInt(element.innerHTML);
+        if(num > 1){
+            num--;
+            element.innerHTML = num.toString();
+        }
+
+    }
+</script>
 
 	</html>

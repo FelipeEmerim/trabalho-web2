@@ -3,7 +3,7 @@
 header("Content-type:text/html;charset='utf-8'",true);
 $pdo = new PDO('mysql:host=localhost;dbname=loja_virtual', 'root', '');
 
-$comando = $pdo->prepare("Select * FROM produtos ORDER BY rand() LIMIT 8");
+$comando = $pdo->prepare("SELECT * FROM produtos ORDER BY rand() LIMIT 8");
 $comando->execute();
 $data = $comando->fetchAll(PDO::FETCH_ASSOC);
 ?>
@@ -32,42 +32,40 @@ $data = $comando->fetchAll(PDO::FETCH_ASSOC);
         @import url('https://fonts.googleapis.com/css?family=MedievalSharp');
 
 
-         #container{
+    #container{
         font-family: 'MedievalSharp', cursive;
         font-size: 20px;
         height: 40px;
         margin-left: 5px;
+        background: black;
+    }
 
-      }
-
-      #logo{
-
+    #logo{
         color: #a07e04;
         font-size: 30px;
-      }
+    }
 
-      #home, #login, #ver, #fale{
+    #home, #login, #ver, #fale{
         color: #a07e04;
-      }
+    }
 
-      #retangulo{
-
+    #retangulo{
         background-image: url("https://pre00.deviantart.net/b631/th/pre/f/2015/229/8/3/skyrim_potions_2nd_set___tes_5_by_etrelley-d962aqm.png");
         font-family: 'MedievalSharp', cursive;
         color: #a07e04;
         height: 350px;
         -webkit-text-stroke-width: 1px;
         -webkit-text-stroke-color: #ffffff;
-          width:100%;
-      }
+        width:100%;
+    }
 
-      .item{
+    .item{
         font-family: 'MedievalSharp', cursive;
         color: #a07e04;
-          width:100%;
-      }
+        width:100%;
+    }
 
-      #busca{
+    #busca{
         background-color:white;
         border:solid 1px;
         border-radius:15px;
@@ -75,9 +73,9 @@ $data = $comando->fetchAll(PDO::FETCH_ASSOC);
         height: 35px;
         position: relative;
         left: 1000px;
-      }
+    }
 
-      #txtBusca{
+    #txtBusca{
         float:left;
         background-color:transparent;
         padding-left:5px;
@@ -85,8 +83,9 @@ $data = $comando->fetchAll(PDO::FETCH_ASSOC);
         height:35px;
         width:260px;
         border-radius:15px;
-      }
-      #buscar{
+    }
+
+    #buscar{
         position: relative;
         left: 210px;
         top: -32px;
@@ -94,32 +93,30 @@ $data = $comando->fetchAll(PDO::FETCH_ASSOC);
         border-radius:12px;
         width:45px;
         background: #a07e04;
-      }
+    }
 
-      html, body{
-        height: 100%;
-        width: 100%;
+    html, body{
         background: black;
 
-      }
+    }
 
-      .dropdown{
+    .dropdown{
         position: relative;
         left: -13.6%;
         top: 68px;
 
-      }
+    }
 
-      #button{
+    #button{
         background: #4e555b;
         color: #a07e04;
         font-family: 'MedievalSharp', cursive;
         font-size: 20px;
         border: none;
 
-      }
+    }
 
-      #itens{
+    #itens{
         background: transparent;
         color: #a07e04;
         font-family: 'MedievalSharp', cursive;
@@ -128,12 +125,12 @@ $data = $comando->fetchAll(PDO::FETCH_ASSOC);
         position:absolute;
         margin-left:3%;
 
-      }
+    }
 
-        a{
+    a{
 
-            color: #a07e04;
-        }
+        color: #a07e04;
+    }
 
     </style>
 
@@ -160,17 +157,17 @@ $data = $comando->fetchAll(PDO::FETCH_ASSOC);
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="http://localhost/Projeto_Web/startbootstrap-heroic-features-gh-pages/index.html?_ijt=fqj38ecpmtudnc82f8cf6i51sd" id="home"> Home <span class="sr-only">(current)</span>
+                    <a class="nav-link" href="index.php" id="home"> Home <span class="sr-only">(current)</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/Projeto_Web/startbootstrap-heroic-features-gh-pages/cadastro.html?_ijt=i6m50c571ockul4vr2k4ulfr5v" id="login">Login</a>
+                    <a class="nav-link" href="cadastro.php" id="login">Login</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#" id="ver"> Ver Carrinho</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/Projeto_Web/startbootstrap-heroic-features-gh-pages/faleConosco.html?_ijt=hrv1u29275kmj6eojatgt34n62" id="fale">Fale Conosco</a>
+                    <a class="nav-link" href="faleConosco.php" id="fale">Fale Conosco</a>
                 </li>
             </ul>
         </div>
@@ -207,12 +204,12 @@ $data = $comando->fetchAll(PDO::FETCH_ASSOC);
                 <div class="card">
                     <img class="card-img-top" src="<?=htmlspecialchars($row['imagem'])?>" height="270" alt="">
                     <div class="card-body item">
-                        <h4 class="card-title"> <?=$row['nome']?> </h4>
-                        <p class="card-text"> <?=$row['descricao']?></p>
-                        <p class="card-text"> R$ <?=$row['preco']?></p>
+                        <h4 class="card-title"> <?=htmlspecialchars($row['nome'])?> </h4>
+                        <p class="card-text"> <?=htmlspecialchars($row['descricao'])?></p>
+                        <p class="card-text"> R$ <?=htmlspecialchars($row['preco'])?></p>
                     </div>
                     <div class="card-footer">
-                        <a href="#" class="btn btn-primary"> Ver detalhes </a>
+                        <a href="<?="produto.php?produto=$row[codigo]"?>" class="btn btn-primary"> Ver detalhes </a>
                     </div>
                 </div>
             </div>
