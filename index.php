@@ -30,6 +30,9 @@
 
     <style>
         @import url('https://fonts.googleapis.com/css?family=MedievalSharp');
+        #fale:hover, #login:hover, #ver:hover, #home:hover, #logo:hover{
+            color: red;
+        }
 
     </style>
 
@@ -94,7 +97,7 @@
     </header>
 
     <!-- Page Features -->
-    <div class="row text-center" id="destaque">
+    <div class="row text-center" id = "destaque">
 
         <?php
         foreach($data as $row):
