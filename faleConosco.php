@@ -25,10 +25,11 @@
         #form{
             font-family: 'MedievalSharp', cursive;
             color: #a07e04;
-            margin-left: 330px;
+            margin-left: 15px;
             border: 1px solid #856404;
             margin-top: 20px;
-            width: 500px;
+            width: 1108px;
+            height: 450px;
         }
 
         #foot{
@@ -36,6 +37,19 @@
             margin-top: 20px;
 
         }
+
+        #enviar{
+
+            background: #393939;
+            border:none;
+            color: #856404;
+        }
+
+         #enviar:hover{
+            color: red ;
+        }
+
+
     </style>
 </head>
 
@@ -113,11 +127,11 @@
                 <label for="email">E-mail:</label> <br/>
                 <input id="email" type="text" size="30" name="replyto"> <br/>
 
+
                 <label for="comentarios">Comentários:</label> <br/>
                 <textarea  id="comentarios" name = "comentarios" rows="10" cols="40" maxlength="500"></textarea> <br/>
 
-                <input type="submit" name="BTEnvia" value="Enviar">
-                <input type="reset" name="BTApaga" value="Apagar">
+                <input type="submit" name="BTEnvia" value="Enviar" id="enviar">
         </form>
 
     </div>
