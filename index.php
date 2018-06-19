@@ -161,7 +161,7 @@ $data = $comando->fetchAll(PDO::FETCH_ASSOC);
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="cadastro.php" id="login">Login</a>
+                    <a class="nav-link" href="cadastro.html" id="login">Login</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#" id="ver"> Ver Carrinho</a>

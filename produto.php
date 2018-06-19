@@ -136,7 +136,7 @@
     #prod{
         width: 1100px;
         height: 450px;
-        background: white;
+        background: #303030;
         margin-top: 2%;
         margin-bottom: 5%;
         margin-left: 2%;
@@ -173,7 +173,6 @@
         left:-14px;
         cursor:pointer;
     }
-
     </style>
 
 
@@ -203,7 +202,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="cadastro.php" id="login">Login</a>
+                    <a class="nav-link" href="cadastro.html" id="login">Login</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#" id="ver"> Ver Carrinho</a>
