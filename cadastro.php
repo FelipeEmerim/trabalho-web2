@@ -3,17 +3,17 @@
 
     switch($_GET['action']){
         case 'getUser':
-            $comando = $pdo->prepare("SELECT count(*) AS cont FROM cadastros WHERE nome = ?");
-            $comando->execute(array($_GET['nome']));
+            $comando = $pdo->prepare("SELECT count(*) AS cont FROM cadastros WHERE email = ?");
+            $comando->execute(array($_GET['email']));
             $data = $comando->fetch(PDO::FETCH_ASSOC);
             echo json_encode($data);
             break;
 
         case 'cadastro':
-            $comando = $pdo->prepare("SELECT count(*) AS cont FROM cadastros WHERE nome = ?");
-            $comando->execute(array($_GET['nome']));
-            $data = $comando->fetch(PDO::FETCH_ASSOC);
-            if($data['cont'] <= 0){
+            $comando = $pdo->prepare("SELECT count(*) AS cont FROM cadastros WHERE email = ?");
+            $comando->execute(array($_GET['email']));
+            $resultado = $comando->fetch(PDO::FETCH_ASSOC);
+            if($resultado['cont'] >= 1){
                 $data = ['succeso'=> false, 'msg'=>'O usuário já existe'];
                 echo json_encode($data);
                 exit();
@@ -22,7 +22,8 @@
             $nome = $_GET['nome'];
             $nome = trim($nome);
             $s_nome = filter_var($nome, FILTER_SANITIZE_STRING);
-            if(strlen($s_nome) <= 0){
+            if(!filter_var($s_nome,FILTER_VALIDATE_REGEXP, array(
+                "options"=>array("regexp"=>"/[a-zA-Z ]{3,}/")))){
                 $data= ['sucesso'=>false, 'msg'=>'Nome de usuário invalido'];
                 echo json_encode($data);
                 exit();
@@ -31,15 +32,15 @@
             $endereco = $_GET['endereco'];
             $endereco = trim($endereco);
             $s_endereco = filter_var($endereco, FILTER_SANITIZE_STRING);
-            if(strlen($s_nome) <= 0){
+            if(!filter_var($s_nome,FILTER_VALIDATE_REGEXP, array(
+                "options"=>array("regexp"=>"/[a-zA-Z0-9\, ]{10,}/")))){
                 $data= ['sucesso'=>false, 'msg'=>'endereco invalido'];
                 echo json_encode($data);
                 exit();
             }
 
             $date = $_GET['data'];
-            $date = trim($date);
-            $s_date = filter_var($date, FILTER_SANITIZE_STRING);
+            $s_date = trim($date);
             if (!filter_var($s_date, FILTER_VALIDATE_REGEXP, array(
                 "options"=>array("regexp"=>"/\d{2}\/\d{2}\/\d{4}/")))){
                 $data= ['sucesso'=>false, 'msg'=>'data de nascimento invalida'];
@@ -48,8 +49,7 @@
             }
 
             $sexo = $_GET['sexo'];
-            $sexo = trim($sexo);
-            $s_sexo = filter_var($sexo, FILTER_SANITIZE_STRING);
+            $s_sexo = trim($sexo);
             if (!filter_var($s_sexo, FILTER_VALIDATE_REGEXP, array(
                 "options"=>array("regexp"=>"/(?:masculino|feminino)/")))){
                 $data= ['sucesso'=>false, 'msg'=>'sexo invalido'];
@@ -69,7 +69,8 @@
             $senha = $_GET['senha'];
             $senha = trim($senha);
             $s_senha = filter_var($senha, FILTER_SANITIZE_STRING);
-            if(strlen($s_senha <= 0)){
+            if(!filter_var($s_senha,FILTER_VALIDATE_REGEXP, array(
+                "options"=>array("regexp"=>"/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{5,}$/")))){
                 $data= ['sucesso'=>false, 'msg'=>'senha invalida'];
                 echo json_encode($data);
                 exit();
@@ -77,8 +78,10 @@
 //            $s_senha = password_hash($s_senha, PASSWORD_DEFAULT);
 //            $comando = $pdo->prepare("INSERT INTO cadastros(nome, endereco, data, sexo, email, senha)
 //            VALUES(?, ?, ?, ?, ?, ?)");
-            $comando->execute(array($s_nome, $s_endereco, $s_date, $s_sexo, $s_email, $s_senha));
+//            $comando->execute(array($s_nome, $s_endereco, $s_date, $s_sexo, $s_email, $s_senha));
             $data= ['sucesso'=>true, 'msg'=>'cadastro realizado com sucesso'];
+            echo json_encode($data);
+            exit();
             break;
 
     }

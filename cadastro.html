@@ -37,6 +37,17 @@
             line-height: 40px;
         }
 
+        .sucesso{
+            display:block;
+            font-family: 'MedievalSharp', cursive;
+            font-size:18px;
+            border-radius: 15px;
+            margin-left: 200px;
+            background: green;
+            height: 40px;
+            line-height: 40px;
+        }
+
         #container{
             font-family: 'MedievalSharp', cursive;
             font-size: 20px;
@@ -226,17 +237,14 @@
         A senha deve possuir pelo menos 5 caracteres, 1 maiusculo e 1 numero e nenhum especial
         <span class = "close" onclick = "fecha(document.getElementById('erro_senha'))">X</span>
     </div><br>
-    <div class = "secreto" id = "erro_nome">
+    <div class = "secreto" id = "erro_email2">
         Este nome já existe
+    </div><br>
+    <div class = "secreto" id = "erro_php">
     </div><br>
     <div class="row text-center">
 
-        <form onsubmit= "return valida()" action="sadas" method="POST" id="cad">
-            <input type="hidden" name="recipient" value="testeiseuemail@gmail.com"> <!-- Pode ser qualquer endereço de email -->
-            <input type="hidden" name="redirect" value="http://seudominio"> <!-- Após o envio, o usuário será redirecionado para a página configurada aqui -->
-            <input type="hidden" name="subject" value="teste de assunto">  <!-- Assunto da mensagem -->
-            <input type="hidden" name="email" value="email@doseudominio">   <!-- Deve ser uma conta de email ativa em seu domínio -->
-
+        <form onsubmit= "return valida()"  id="cad">
 
             <label for="nome">Nome:</label>
             <input id="nome" type="text" size="30" name="nome" required> <br/>
@@ -248,9 +256,9 @@
             <input id="dt" type="text" size="50" name="dt"> <br/>
             Sexo:
             <label for="masc">Masculino</label>
-            <input id="masc" type="radio" name="gender" value="male" checked>
+            <input id="masc" type="radio" name="gender" value="masculino" checked>
             <label for="fem">Feminino</label>
-            <input id="fem" type="radio" name="gender" value="female"><br>
+            <input id="fem" type="radio" name="gender" value="feminino"><br>
 
             <label for="email">E-mail:</label>
             <input id="email" type="text" size="30" name="email" required> <br/>
@@ -259,7 +267,7 @@
             <input id="senha" type="password" size="30" name="senha" required> <br/>
 
 
-            <button type="submit" id="enviar"  name="enviar" value="1" formmethod="POST" class="btn btn-primary">Enviar</button>
+            <button type="submit" id="enviar"  name="enviar" value="1" class="btn btn-primary">Enviar</button>
         </form>
 
     </div>
@@ -314,7 +322,7 @@
         else{
             document.getElementById("erro_data").setAttribute("class", "secreto");
         }
-        if(!(this.senha.value.match(/[A-Z]+[a-z]*[0-9]+/)) || this.senha.value.length < 5){
+        if(!(this.senha.value.match(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{5,}$/)) || this.senha.value.length < 5){
 
             flag = false;
             document.getElementById("erro_senha").setAttribute("class", "erro");
@@ -326,22 +334,38 @@
         else{
             document.getElementById("erro_senha").setAttribute("class", "secreto");
         }
+        if (flag){
+            $.getJSON('cadastro.php', {action:'cadastro', nome:$("#nome").val(), endereco:$("#endereco").val(),
+            data:$("#dt").val(), sexo:$('input[name=gender]:checked').val(), email:$("#email").val(),
+            senha:$("#senha").val()}, function (data) {
 
-        return flag;
+                if(data.sucesso){
+                    $("#erro_php").text(data.msg).prop('class', 'sucesso');
+
+                }else{
+                    $("#erro_php").text(data.msg).prop('class', 'erro');
+                }
+
+                setTimeout(function(){
+                            fecha(document.getElementById("erro_php"))}, 4000);
+
+            });
+        }
+
+        return false;
     }
     $('document').ready(function(){
 
-        $("#nome").keyup(function(){
+        $("#email").change(function(){
 
-            $.getJSON('cadastro.php', {action:"getUser", nome:$("#nome").val()}, function(data){
-                console.log(data);
+            $.getJSON('cadastro.php', {action:"getUser", email:$("#email").val()}, function(data){
                 if(data.cont[0] > 0){
 
-                    $("#erro_nome").text("nome ja cadastrado, escolha outro").css({display:"block"}).prop('class','erro');
+                    $("#erro_email2").text("email ja cadastrado, escolha outro").css({display:"block"}).prop('class','erro');
                     $("#enviar").prop('disabled', true);
                 }else{
 
-                    $("#erro_nome").css({display:"none"});
+                    $("#erro_email2").css({display:"none"});
                     $("#enviar").prop('disabled', false);
                 }
             });

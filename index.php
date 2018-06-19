@@ -94,7 +94,7 @@
     </header>
 
     <!-- Page Features -->
-    <div class="row text-center">
+    <div class="row text-center" id="destaque">
 
         <?php
         foreach($data as $row):

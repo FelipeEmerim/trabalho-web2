@@ -3,7 +3,7 @@
             display:none;
         }
 
-        .erro{
+        erro{
             display:block;
             font-family: 'MedievalSharp', cursive;
             font-size:18px;
@@ -106,6 +106,12 @@
         width: 40px;
         position:absolute;
         margin-left:3%;
+      }
+
+      #destaque{
+          color: #a07e04;
+          font-family: 'MedievalSharp', cursive;
+          font-size: 18px;
       }
 
         a{
