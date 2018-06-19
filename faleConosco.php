@@ -17,37 +17,10 @@
     <!-- Custom styles for this template -->
     <link href="startbootstrap-heroic-features-gh-pages/css/heroic-features.css" rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="pageStyle.css">
+    <link rel="stylesheet" type="text/css" href="estilos.css">
 
     <style>
         @import url('https://fonts.googleapis.com/css?family=MedievalSharp');
-
-
-        #container{
-            font-family: 'MedievalSharp', cursive;
-            font-size: 20px;
-            height: 40px;
-            margin-left: 5px;
-        }
-
-        #logo{
-            color: #a07e04;
-            font-size: 30px;
-        }
-
-        #home, #login, #ver, #fale{
-            color: #a07e04;
-        }
-
-        #retangulo{
-
-            background-image: url("https://pre00.deviantart.net/b631/th/pre/f/2015/229/8/3/skyrim_potions_2nd_set___tes_5_by_etrelley-d962aqm.png");
-            font-family: 'MedievalSharp', cursive;
-            color: #a07e04;
-            height: 370px;
-            -webkit-text-stroke-width: 1px;
-            -webkit-text-stroke-color: #ffffff;
-        }
 
         #form{
             font-family: 'MedievalSharp', cursive;
@@ -57,75 +30,13 @@
             margin-top: 20px;
             width: 500px;
         }
-        #busca{
-            background-color:white;
-            border:solid 1px;
-            border-radius:15px;
-            width:260px;
-            height: 35px;
-            position: relative;
-            left: 1000px;
-        }
-
-        #txtBusca{
-            float:left;
-            background-color:transparent;
-            padding-left:5px;
-            font-size:18px;
-            height:35px;
-            width:260px;
-            border-radius:15px;
-        }
-
-        #buscar{
-            position: relative;
-            left: 210px;
-            top: -32px;
-            height:30px;
-            border-radius:12px;
-            width:45px;
-            background: #a07e04;
-        }
-
-        html, body{
-        background: black;
-
-        }
 
         #foot{
             height: 80px;
             margin-top: 20px;
 
         }
-        .dropdown{
-            position: relative;
-            left: -13.6%;
-            top: 68px;
-        }
-        #button{
-            background: #4e555b;
-            color: #a07e04;
-            font-family: 'MedievalSharp', cursive;
-            font-size: 20px;
-            border: none;
-        }
-        #itens{
-            background: transparent;
-            color: #a07e04;
-            font-family: 'MedievalSharp', cursive;
-            font-size: 18px;
-            width: 40px;
-            position:absolute;
-            margin-left:3%;
-        }
-
-        a{
-            color: #a07e04;
-        }
-
     </style>
-
-
 </head>
 
 <body>
