@@ -335,7 +335,7 @@
             document.getElementById("erro_senha").setAttribute("class", "secreto");
         }
         if (flag){
-            $.getJSON('cadastro.php', {action:'cadastro', nome:$("#nome").val(), endereco:$("#endereco").val(),
+            $.post('cadastro.php', {action:'cadastro', nome:$("#nome").val(), endereco:$("#endereco").val(),
             data:$("#dt").val(), sexo:$('input[name=gender]:checked').val(), email:$("#email").val(),
             senha:$("#senha").val()}, function (data) {
 
@@ -349,16 +349,16 @@
                 setTimeout(function(){
                             fecha(document.getElementById("erro_php"))}, 4000);
 
-            });
+            }, 'json');
         }
 
         return false;
     }
     $('document').ready(function(){
 
-        $("#email").change(function(){
+        $("#email").on('focusout keyup', function(){
 
-            $.getJSON('cadastro.php', {action:"getUser", email:$("#email").val()}, function(data){
+            $.post('cadastro.php', {action:"getUser", email:$("#email").val()}, function(data){
                 if(data.cont[0] > 0){
 
                     $("#erro_email2").text("email ja cadastrado, escolha outro").css({display:"block"}).prop('class','erro');
@@ -368,7 +368,7 @@
                     $("#erro_email2").css({display:"none"});
                     $("#enviar").prop('disabled', false);
                 }
-            });
+            }, 'json');
         });
     });
 </script>
