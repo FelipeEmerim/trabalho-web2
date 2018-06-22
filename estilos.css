@@ -145,28 +145,29 @@
 
         }
 
-        .secreto{
-            display:none;
+        #form{
+            font-family: 'MedievalSharp', cursive;
+            color: #a07e04;
+            margin-left: 15px;
+            border: 1px solid #856404;
+            margin-top: 20px;
+            width: 1108px;
+            height: 450px;
         }
 
-        .erro{
-            display:block;
-            font-family: 'MedievalSharp', cursive;
-            font-size:18px;
-            border-radius: 15px;
-            margin-left: 200px;
-            background: red;
-            height: 40px;
-            line-height: 40px;
+        #foot{
+            height: 80px;
+            margin-top: 20px;
+
         }
 
-        .sucesso{
-            display:block;
-            font-family: 'MedievalSharp', cursive;
-            font-size:18px;
-            border-radius: 15px;
-            margin-left: 200px;
-            background: green;
-            height: 40px;
-            line-height: 40px;
+        #enviar{
+
+            background: #393939;
+            border:none;
+            color: #856404;
+        }
+
+         #enviar:hover{
+            color: red ;
         }
