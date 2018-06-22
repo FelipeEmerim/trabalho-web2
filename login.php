@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<?php
+    session_start();
+    if(isset($_SESSION['usuario'])){
+        header('Location: index.php');
+    }
+?>
 <head>
 
 
@@ -28,8 +33,7 @@
             margin-left: 310px;
             border: 1px solid #856404;
             margin-top: 20px;
-            width: 500px;
-            height: 300px;
+            padding: 15px;
         }
 
         #foot{
@@ -116,10 +120,20 @@
     </header>
 
     <!-- Page Features -->
+
+    <div class = "secreto" id = "erro_email">
+        O email informado não é valido
+        <span class = "close" onclick = "fecha(document.getElementById('erro_email'))">X</span>
+    </div><br>
+
+    <div class = "secreto" id = "erro_senha">
+        A senha deve possuir pelo menos 5 caracteres, 1 maiusculo e 1 numero e nenhum especial
+        <span class = "close" onclick = "fecha(document.getElementById('erro_senha'))">X</span>
+    </div><br>
+
     <div class="row text-center">
 
-
-        <form action="#" method="POST" id="form">
+        <form onsubmit="return valida()" method="POST" id="form">
 
                 <label for="email">E-mail:</label> <br/>
                 <input id="email" type="text" size="50" name="replyto" required> <br/>
@@ -128,11 +142,11 @@
                 <input id="senha" type="password" size="30" name="senha" required> <br/><br/>
 
                 <button type="submit" id="enviar"  name="enviar" value="1" formmethod="POST" class="btn btn-primary">Enviar</button><br/><br/>
-
-                <span class="nav-item">
-                    <a class="nav-link" href="cadastro.php" id="fale"> <u>Não possui cadastro conosco?</u></a>
-                </span>
         </form>
+
+        <span class="nav-item">
+                    <a class="nav-link" href="cadastro.php" id="fale"> <u>Não possui cadastro conosco?</u></a>
+        </span>
 
     </div>
     <!-- /.row -->
@@ -151,6 +165,54 @@
 <!-- Bootstrap core JavaScript -->
 <script src="startbootstrap-heroic-features-gh-pages/vendor/jquery/jquery.min.js"></script>
 <script src="startbootstrap-heroic-features-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script>
+
+    function fecha(element){
+        element.setAttribute("class", "secreto");
+    }
+
+    function validaEmail(){
+        if(!(this.email.value.match(/[^@]+@[^@]+./))){
+
+            document.getElementById('erro_email').setAttribute('class', 'erro');
+            setTimeout(function () {
+                fecha(document.getElementById('erro_email'));
+            }, 4000);
+            this.email.focus();
+            return false;
+        }
+
+        document.getElementById('erro_email').setAttribute('class', 'secreto');
+        return true;
+
+    }
+
+    function validaSenha(){
+        if(!(this.senha.value.match(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{5,}$/)) || this.senha.value.length < 5){
+
+            document.getElementById("erro_senha").setAttribute("class", "erro");
+            setTimeout(function(){
+                fecha(document.getElementById("erro_senha"))
+            }, 4000);
+            this.senha.focus();
+            return false;
+        }
+
+        document.getElementById("erro_senha").setAttribute("class", "secreto");
+        return true;
+
+    }
+
+    function valida(){
+        if(validaEmail() & validaSenha()){
+            console.log('to do');
+            return true;
+        }
+        return false;
+
+    }
+
+</script>
 
 </body>
 

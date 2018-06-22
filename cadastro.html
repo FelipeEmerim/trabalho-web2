@@ -190,7 +190,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="cadastro.html" id="login">Login</a>
+                    <a class="nav-link" href="login.php" id="login">Login</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#" id="ver"> Ver Carrinho</a>
@@ -337,7 +337,6 @@
 
     function validaEmail(){
         if(!(this.email.value.match(/[^@]+@[^@]+./))){
-            flag = false;
 
             document.getElementById('erro_email').setAttribute('class', 'erro');
             setTimeout(function () {
@@ -354,7 +353,6 @@
 
     function validaData(){
         if(!(this.dt.value.match(/\d{2}\/\d{2}\/\d{4}/))){
-            flag = false;
             document.getElementById("erro_data").setAttribute("class", "erro");
             setTimeout(function(){
                 fecha(document.getElementById("erro_data"))
@@ -370,8 +368,6 @@
 
     function validaSenha(){
         if(!(this.senha.value.match(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{5,}$/)) || this.senha.value.length < 5){
-
-            flag = false;
             document.getElementById("erro_senha").setAttribute("class", "erro");
             setTimeout(function(){
                 fecha(document.getElementById("erro_senha"))
@@ -386,8 +382,6 @@
     }
 
     function valida(){
-        let flag = true;
-
 
         if (validaData() & validaEmail() & validaNome() & validaEndereco() & validaSenha()){
             $.post('cadastro.php', {action:'cadastro', nome:$("#nome").val(), endereco:$("#endereco").val(),
