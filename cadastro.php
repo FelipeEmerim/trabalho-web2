@@ -75,10 +75,10 @@
                 echo json_encode($data);
                 exit();
             }
-//            $s_senha = password_hash($s_senha, PASSWORD_DEFAULT);
-//            $comando = $pdo->prepare("INSERT INTO cadastros(nome, endereco, data, sexo, email, senha)
-//            VALUES(?, ?, ?, ?, ?, ?)");
-//            $comando->execute(array($s_nome, $s_endereco, $s_date, $s_sexo, $s_email, $s_senha));
+            $s_senha = password_hash($s_senha, PASSWORD_DEFAULT);
+            $comando = $pdo->prepare("INSERT INTO cadastros(nome, endereco, data, sexo, email, senha)
+            VALUES(?, ?, ?, ?, ?, ?)");
+            $comando->execute(array($s_nome, $s_endereco, $s_date, $s_sexo, $s_email, $s_senha));
             $data= ['sucesso'=>true, 'msg'=>'cadastro realizado com sucesso'];
             echo json_encode($data);
             exit();

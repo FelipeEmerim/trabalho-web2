@@ -225,23 +225,33 @@
 
     <!-- Page Features -->
     <!--erros -->
-    <div class = "secreto" id = "erro_email">
-        O email informado não é valido
-        <span class = "close" onclick = "fecha(document.getElementById('erro_email'))">X</span>
-    </div><br>
-    <div class = "secreto" id = "erro_data">
-        A data informada não é valida
-        <span class = "close" onclick = "fecha(document.getElementById('erro_data'))">X</span>
-    </div><br>
-    <div class = "secreto" id = "erro_senha">
-        A senha deve possuir pelo menos 5 caracteres, 1 maiusculo e 1 numero e nenhum especial
-        <span class = "close" onclick = "fecha(document.getElementById('erro_senha'))">X</span>
-    </div><br>
-    <div class = "secreto" id = "erro_email2">
-        Este nome já existe
-    </div><br>
-    <div class = "secreto" id = "erro_php">
-    </div><br>
+    <div id="erro_container">
+        <div class = "secreto" id = "erro_nome">
+            O nome informado não é valido
+            <span class = "close" onclick = "fecha(document.getElementById('erro_email'))">X</span>
+        </div><br>
+        <div class = "secreto" id = "erro_endereco">
+            O endereco informado não é valido
+            <span class = "close" onclick = "fecha(document.getElementById('erro_email'))">X</span>
+        </div><br>
+        <div class = "secreto" id = "erro_email">
+            O email informado não é valido
+            <span class = "close" onclick = "fecha(document.getElementById('erro_email'))">X</span>
+        </div><br>
+        <div class = "secreto" id = "erro_data">
+            A data informada não é valida
+            <span class = "close" onclick = "fecha(document.getElementById('erro_data'))">X</span>
+        </div><br>
+        <div class = "secreto" id = "erro_senha">
+            A senha deve possuir pelo menos 5 caracteres, 1 maiusculo e 1 numero e nenhum especial
+            <span class = "close" onclick = "fecha(document.getElementById('erro_senha'))">X</span>
+        </div><br>
+        <div class = "secreto" id = "erro_email2">
+            Este email já existe
+        </div><br>
+        <div class = "secreto" id = "erro_php">
+        </div><br>
+    </div>
     <div class="row text-center">
 
         <form onsubmit= "return valida()"  id="cad">
@@ -295,22 +305,54 @@
         element.setAttribute("class", "secreto");
     }
 
+    function validaNome(){
+        if(!(this.nome.value.match(/^[a-zA-Z ]{3,}$/))) {
+            document.getElementById('erro_nome').setAttribute('class', 'erro');
+            setTimeout(function () {
+                fecha(document.getElementById('erro_email'));
+            }, 4000);
+            this.nome.focus();
+            return false;
+        }
 
+        document.getElementById('erro_nome').setAttribute('class', 'secreto');
+        return true
 
-    function valida(){
-        let flag = true;
-        if(!(this.email.value.match(/[^@]+@[^@]+\./))){
+    }
+
+    function validaEndereco(){
+        if(!(this.endereco.value.match(/^[a-zA-Z0-9, ]{10,}$/))){
+            document.getElementById('erro_endereco').setAttribute('class', 'erro');
+            setTimeout(function () {
+                fecha(document.getElementById('erro_endereco'));
+            }, 4000);
+            this.endereco.focus();
+            return false;
+        }
+
+        document.getElementById('erro_endereco').setAttribute('class', 'secreto');
+        return true;
+
+    }
+
+    function validaEmail(){
+        if(!(this.email.value.match(/[^@]+@[^@]+./))){
             flag = false;
-            document.getElementById("erro_email").setAttribute("class", "erro");
+
+            document.getElementById('erro_email').setAttribute('class', 'erro');
             setTimeout(function () {
                 fecha(document.getElementById('erro_email'));
             }, 4000);
             this.email.focus();
-        }
-        else{
-            document.getElementById("erro_email").setAttribute("class", "secreto");
+            return false;
         }
 
+        document.getElementById('erro_email').setAttribute('class', 'secreto');
+        return true;
+
+    }
+
+    function validaData(){
         if(!(this.dt.value.match(/\d{2}\/\d{2}\/\d{4}/))){
             flag = false;
             document.getElementById("erro_data").setAttribute("class", "erro");
@@ -318,10 +360,15 @@
                 fecha(document.getElementById("erro_data"))
             }, 4000);
             this.dt.focus();
+            return false;
         }
-        else{
-            document.getElementById("erro_data").setAttribute("class", "secreto");
-        }
+
+        document.getElementById("erro_data").setAttribute("class", "secreto");
+        return true;
+
+    }
+
+    function validaSenha(){
         if(!(this.senha.value.match(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{5,}$/)) || this.senha.value.length < 5){
 
             flag = false;
@@ -330,11 +377,19 @@
                 fecha(document.getElementById("erro_senha"))
             }, 4000);
             this.senha.focus();
+            return false;
         }
-        else{
-            document.getElementById("erro_senha").setAttribute("class", "secreto");
-        }
-        if (flag){
+
+        document.getElementById("erro_senha").setAttribute("class", "secreto");
+        return true;
+
+    }
+
+    function valida(){
+        let flag = true;
+
+
+        if (validaData() & validaEmail() & validaNome() & validaEndereco() & validaSenha()){
             $.post('cadastro.php', {action:'cadastro', nome:$("#nome").val(), endereco:$("#endereco").val(),
             data:$("#dt").val(), sexo:$('input[name=gender]:checked').val(), email:$("#email").val(),
             senha:$("#senha").val()}, function (data) {
