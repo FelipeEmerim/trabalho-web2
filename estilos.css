@@ -132,3 +132,15 @@
             margin-top: 10px;
             margin-right:50px;
         }
+
+        .button{
+            background: #4e555b;
+            color: #a07e04;
+            font-family: 'MedievalSharp', cursive;
+            font-size: 20px;
+            border: none;
+            position: relative;
+            left: 320px;
+            top: 50px;
+
+        }
