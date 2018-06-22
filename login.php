@@ -131,21 +131,25 @@
         <span class = "close" onclick = "fecha(document.getElementById('erro_senha'))">X</span>
     </div><br>
 
+    <div class = "secreto" id = "erro_php">
+        <span class = "close" onclick = "fecha(document.getElementById('erro_php'))">X</span>
+    </div><br>
+
     <div class="row text-center">
 
         <form onsubmit="return valida()" method="POST" id="form">
 
                 <label for="email">E-mail:</label> <br/>
-                <input id="email" type="text" size="50" name="replyto" required> <br/>
+                <input id="email" type="text" size="50" name="email" required> <br/>
 
                 <label for="senha">Senha:</label> <br/>
                 <input id="senha" type="password" size="30" name="senha" required> <br/><br/>
 
-                <button type="submit" id="enviar"  name="enviar" value="1" formmethod="POST" class="btn btn-primary">Enviar</button><br/><br/>
+            <button type="submit" id="enviar" name="enviar" value="1" class="btn btn-primary">Enviar</button>
         </form>
 
-        <span class="nav-item">
-                    <a class="nav-link" href="cadastro.php" id="fale"> <u>Não possui cadastro conosco?</u></a>
+        <span>
+            <a href="cadastro.php" id="fale"> <u>Não possui cadastro conosco?</u></a>
         </span>
 
     </div>
@@ -204,12 +208,22 @@
     }
 
     function valida(){
-        if(validaEmail() & validaSenha()){
-            console.log('to do');
-            return true;
-        }
-        return false;
+            $.post('loginControle.php', {email: $("#email").val(), senha: $("#senha").val()}, function (data) {
+                if(data.sucesso){
+                    $("#erro_php").text(data.msg).prop('class', 'sucesso');
+                    setTimeout(function(){
+                        window.location.replace('index.php');
+                    }, 3000);
 
+                }else{
+                    $("#erro_php").text(data.msg).prop('class', 'erro');
+                }
+
+                setTimeout(function(){
+                    fecha(document.getElementById("erro_php"))}, 4000);
+            }, 'json');
+
+            return false;
     }
 
 </script>

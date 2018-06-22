@@ -1,6 +1,10 @@
 <?php
     $pdo = new PDO('mysql:host=localhost;dbname=loja_virtual', 'root', '');
 
+    if(!(isset($_POST['action']))){
+        header('Location: login.html');
+    }
+
     switch($_POST['action']){
         case 'getUser':
             $comando = $pdo->prepare("SELECT count(*) AS cont FROM cadastros WHERE email = ?");
@@ -71,10 +75,11 @@
             $s_senha = filter_var($senha, FILTER_SANITIZE_STRING);
             if(!filter_var($s_senha,FILTER_VALIDATE_REGEXP, array(
                 "options"=>array("regexp"=>"/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{5,}$/")))){
-                $data= ['sucesso'=>false, 'msg'=>$s_endereco];
+                $data= ['sucesso'=>false, 'msg'=>'senha invalida'];
                 echo json_encode($data);
                 exit();
             }
+
             $s_senha = password_hash($s_senha, PASSWORD_DEFAULT);
             $comando = $pdo->prepare("INSERT INTO cadastros(nome, endereco, data, sexo, email, senha)
             VALUES(?, ?, ?, ?, ?, ?)");

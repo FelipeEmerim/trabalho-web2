@@ -171,3 +171,30 @@
          #enviar:hover{
             color: red ;
         }
+
+        .secreto{
+            display:none;
+        }
+
+        .erro{
+            display:block;
+            font-family: 'MedievalSharp', cursive;
+            font-size:18px;
+            border-radius: 15px;
+            margin-left: 200px;
+            background: red;
+            height: 40px;
+            line-height: 40px;
+        }
+
+        .sucesso{
+            display:block;
+            font-family: 'MedievalSharp', cursive;
+            font-size:18px;
+            border-radius: 15px;
+            margin-left: 200px;
+            background: green;
+            height: 40px;
+            line-height: 40px;
+        }
+
