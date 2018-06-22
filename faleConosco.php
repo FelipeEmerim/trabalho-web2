@@ -114,7 +114,7 @@
     <div class="row text-center">
 
 
-        <form action="#" method="POST" id="form">
+        <form action="enviarEmail.php" method="POST" id="form">
             <input type="hidden" name="recipient" value="testeiseuemail@gmail.com"> <!-- Pode ser qualquer endereço de email -->
             <input type="hidden" name="redirect" value="http://seudominio"> <!-- Após o envio, o usuário será redirecionado para a página configurada aqui -->
             <input type="hidden" name="subject" value="teste de assunto">  <!-- Assunto da mensagem -->
