@@ -198,3 +198,22 @@
             line-height: 40px;
         }
 
+        #escondida{
+            position:absolute;
+            z-index: 1111;
+            background:black;
+            border: 2px solid yellow;
+            color: yellow;
+            width: 250px;
+            left: 870px;
+            height: 100px;
+            text-align:center;
+            display:none;
+        }
+
+        #logado{
+            margin-left: 100px;
+            margin-right: 100px;
+            cursor: pointer;
+        }
+

@@ -84,7 +84,7 @@
 <!-- Bootstrap core JavaScript -->
 <script src="startbootstrap-heroic-features-gh-pages/vendor/jquery/jquery.min.js"></script>
 <script src="startbootstrap-heroic-features-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script>$('#targetdiv').load('staticTop.html');</script>
+<script>$('#targetdiv').load('staticTop.php');</script>
 
 </body>
 

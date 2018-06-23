@@ -1,92 +1,267 @@
+<!DOCTYPE html>
 <?php
-    $pdo = new PDO('mysql:host=localhost;dbname=loja_virtual', 'root', '');
+session_start();
+if(isset($_SESSION['usuario'])){
+    header('Location: index.php');
+}
+?>
+<html lang="en">
 
-    if(!(isset($_POST['action']))){
-        header('Location: login.html');
+<head>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title> Ocarina - The Store of Your Journey </title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="startbootstrap-heroic-features-gh-pages/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="startbootstrap-heroic-features-gh-pages/css/heroic-features.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="estilos.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=MedievalSharp');
+
+        #cad{
+            position: relative;
+            top: -150px;
+            left: -50px;
+
+        }
+
+        #footer{
+            height: 80px;
+            margin-top: 153px;
+        }
+
+        .close{
+            float:left;
+            color:blue;
+            margin-left: 10px;
+            margin-top: 10px;
+            margin-right:50px;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <div id="targetdiv"></div>
+
+<div class="container">
+
+    <!-- Jumbotron Header -->
+    <header class="jumbotron my-4" id="retangulo">
+        <h1 class="display-3"> Cadastre-se!!!</h1>
+        <p class="lead"> Se identifique aqui, estranho. </p>
+
+    </header>
+
+    <!-- Page Features -->
+    <!--erros -->
+    <div id="erro_container">
+        <div class = "secreto" id = "erro_nome">
+            O nome informado não é valido
+            <span class = "close" onclick = "fecha(document.getElementById('erro_email'))">X</span>
+        </div><br>
+        <div class = "secreto" id = "erro_endereco">
+            O endereco informado não é valido
+            <span class = "close" onclick = "fecha(document.getElementById('erro_email'))">X</span>
+        </div><br>
+        <div class = "secreto" id = "erro_email">
+            O email informado não é valido
+            <span class = "close" onclick = "fecha(document.getElementById('erro_email'))">X</span>
+        </div><br>
+        <div class = "secreto" id = "erro_data">
+            A data informada não é valida
+            <span class = "close" onclick = "fecha(document.getElementById('erro_data'))">X</span>
+        </div><br>
+        <div class = "secreto" id = "erro_senha">
+            A senha deve possuir pelo menos 5 caracteres, 1 maiusculo e 1 numero e nenhum especial
+            <span class = "close" onclick = "fecha(document.getElementById('erro_senha'))">X</span>
+        </div><br>
+        <div class = "secreto" id = "erro_email2">
+            Este email já existe
+        </div><br>
+        <div class = "secreto" id = "erro_php">
+        </div><br>
+    </div>
+    <div class="row text-center">
+
+        <form onsubmit= "return valida()"  id="cad">
+
+            <label for="nome">Nome:</label>
+            <input id="nome" type="text" size="30" name="nome" required> <br/>
+
+            <label for="endereco">Endereço:</label>
+            <input id="endereco" type="text" size="50" name="endereco" required> <br/>
+
+            <label for="dt">Data de Nascimento:</label>
+            <input id="dt" type="text" size="50" name="dt"> <br/>
+            Sexo:
+            <label for="masc">Masculino</label>
+            <input id="masc" type="radio" name="gender" value="masculino" checked>
+            <label for="fem">Feminino</label>
+            <input id="fem" type="radio" name="gender" value="feminino"><br>
+
+            <label for="email">E-mail:</label>
+            <input id="email" type="text" size="30" name="email" required> <br/>
+
+            <label for="senha">Senha:</label>
+            <input id="senha" type="password" size="30" name="senha" required> <br/>
+
+
+            <button type="submit" id="enviar"  name="enviar" value="1" class="btn btn-primary">Enviar</button>
+        </form>
+
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->
+
+<!-- Footer -->
+<footer class="py-5 bg-dark" id="footer">
+    <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Ocarina 2018</p>
+    </div>
+    <!-- /.container -->
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="startbootstrap-heroic-features-gh-pages/vendor/jquery/jquery.min.js"></script>
+<script src="startbootstrap-heroic-features-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>$('#targetdiv').load('staticTop.php');</script>
+
+
+</body>
+<script>
+
+    function fecha(element){
+        element.setAttribute("class", "secreto");
     }
 
-    switch($_POST['action']){
-        case 'getUser':
-            $comando = $pdo->prepare("SELECT count(*) AS cont FROM cadastros WHERE email = ?");
-            $comando->execute(array($_POST['email']));
-            $data = $comando->fetch(PDO::FETCH_ASSOC);
-            echo json_encode($data);
-            break;
+    function validaNome(){
+        if(!(this.nome.value.match(/^[a-zA-Z ]{3,}$/))) {
+            document.getElementById('erro_nome').setAttribute('class', 'erro');
+            setTimeout(function () {
+                fecha(document.getElementById('erro_email'));
+            }, 4000);
+            this.nome.focus();
+            return false;
+        }
 
-        case 'cadastro':
-            $comando = $pdo->prepare("SELECT count(*) AS cont FROM cadastros WHERE email = ?");
-            $comando->execute(array($_POST['email']));
-            $resultado = $comando->fetch(PDO::FETCH_ASSOC);
-            if($resultado['cont'] >= 1){
-                $data = ['succeso'=> false, 'msg'=>'O usuário já existe'];
-                echo json_encode($data);
-                exit();
-            }
-
-            $nome = $_POST['nome'];
-            $nome = trim($nome);
-            $s_nome = filter_var($nome, FILTER_SANITIZE_STRING);
-            if(!filter_var($s_nome,FILTER_VALIDATE_REGEXP, array(
-                "options"=>array("regexp"=>"/^[a-zA-Z ]{3,}$/")))){
-                $data= ['sucesso'=>false, 'msg'=>'Nome de usuário invalido'];
-                echo json_encode($data);
-                exit();
-            }
-
-            $endereco = $_POST['endereco'];
-            $endereco = trim($endereco);
-            $s_endereco = filter_var($endereco, FILTER_SANITIZE_STRING);
-            if(!filter_var($s_endereco,FILTER_VALIDATE_REGEXP, array(
-                "options"=>array("regexp"=>"/^[a-zA-Z0-9, ]{10,}$/")))){
-                $data= ['sucesso'=>false, 'msg'=>'endereco invalido'];
-                echo json_encode($data);
-                exit();
-            }
-
-            $date = $_POST['data'];
-            $s_date = trim($date);
-            if (!filter_var($s_date, FILTER_VALIDATE_REGEXP, array(
-                "options"=>array("regexp"=>"/\d{2}\/\d{2}\/\d{4}/")))){
-                $data= ['sucesso'=>false, 'msg'=>'data de nascimento invalida'];
-                echo json_encode($data);
-                exit();
-            }
-
-            $sexo = $_POST['sexo'];
-            $s_sexo = trim($sexo);
-            if (!filter_var($s_sexo, FILTER_VALIDATE_REGEXP, array(
-                "options"=>array("regexp"=>"/(?:masculino|feminino)/")))){
-                $data= ['sucesso'=>false, 'msg'=>'sexo invalido'];
-                echo json_encode($data);
-                exit();
-            }
-
-            $email = $_POST['email'];
-            $email = trim($email);
-            $s_email = filter_var($email, FILTER_SANITIZE_EMAIL);
-            if(!filter_var($s_email, FILTER_VALIDATE_EMAIL)){
-                $data= ['sucesso'=>false, 'msg'=>'email invalido'];
-                echo json_encode($data);
-                exit();
-            }
-
-            $senha = $_POST['senha'];
-            $senha = trim($senha);
-            $s_senha = filter_var($senha, FILTER_SANITIZE_STRING);
-            if(!filter_var($s_senha,FILTER_VALIDATE_REGEXP, array(
-                "options"=>array("regexp"=>"/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{5,}$/")))){
-                $data= ['sucesso'=>false, 'msg'=>'senha invalida'];
-                echo json_encode($data);
-                exit();
-            }
-
-            $s_senha = password_hash($s_senha, PASSWORD_DEFAULT);
-            $comando = $pdo->prepare("INSERT INTO cadastros(nome, endereco, data, sexo, email, senha)
-            VALUES(?, ?, ?, ?, ?, ?)");
-            $comando->execute(array($s_nome, $s_endereco, $s_date, $s_sexo, $s_email, $s_senha));
-            $data= ['sucesso'=>true, 'msg'=>'cadastro realizado com sucesso'];
-            echo json_encode($data);
-            exit();
-            break;
+        document.getElementById('erro_nome').setAttribute('class', 'secreto');
+        return true
 
     }
+
+    function validaEndereco(){
+        if(!(this.endereco.value.match(/^[a-zA-Z0-9, ]{10,}$/))){
+            document.getElementById('erro_endereco').setAttribute('class', 'erro');
+            setTimeout(function () {
+                fecha(document.getElementById('erro_endereco'));
+            }, 4000);
+            this.endereco.focus();
+            return false;
+        }
+
+        document.getElementById('erro_endereco').setAttribute('class', 'secreto');
+        return true;
+
+    }
+
+    function validaEmail(){
+        if(!(this.email.value.match(/[^@]+@[^@]+./))){
+
+            document.getElementById('erro_email').setAttribute('class', 'erro');
+            setTimeout(function () {
+                fecha(document.getElementById('erro_email'));
+            }, 4000);
+            this.email.focus();
+            return false;
+        }
+
+        document.getElementById('erro_email').setAttribute('class', 'secreto');
+        return true;
+
+    }
+
+    function validaData(){
+        if(!(this.dt.value.match(/\d{2}\/\d{2}\/\d{4}/))){
+            document.getElementById("erro_data").setAttribute("class", "erro");
+            setTimeout(function(){
+                fecha(document.getElementById("erro_data"))
+            }, 4000);
+            this.dt.focus();
+            return false;
+        }
+
+        document.getElementById("erro_data").setAttribute("class", "secreto");
+        return true;
+
+    }
+
+    function validaSenha(){
+        if(!(this.senha.value.match(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{5,}$/)) || this.senha.value.length < 5){
+            document.getElementById("erro_senha").setAttribute("class", "erro");
+            setTimeout(function(){
+                fecha(document.getElementById("erro_senha"))
+            }, 4000);
+            this.senha.focus();
+            return false;
+        }
+
+        document.getElementById("erro_senha").setAttribute("class", "secreto");
+        return true;
+
+    }
+
+    function valida(){
+
+        if (validaData() & validaEmail() & validaNome() & validaEndereco() & validaSenha()){
+            $.post('cadastroControle.php', {action:'cadastro', nome:$("#nome").val(), endereco:$("#endereco").val(),
+            data:$("#dt").val(), sexo:$('input[name=gender]:checked').val(), email:$("#email").val(),
+            senha:$("#senha").val()}, function (data) {
+
+                if(data.sucesso){
+                    $("#erro_php").text(data.msg).prop('class', 'sucesso');
+
+                }else{
+                    $("#erro_php").text(data.msg).prop('class', 'erro');
+                }
+
+                setTimeout(function(){
+                            fecha(document.getElementById("erro_php"))}, 4000);
+
+            }, 'json');
+        }
+
+        return false;
+    }
+    $('document').ready(function(){
+
+        $("#email").on('focusout keyup', function(){
+
+            $.post('cadastroControle.php', {action:"getUser", email:$("#email").val()}, function(data){
+                if(data.cont[0] > 0){
+
+                    $("#erro_email2").text("email ja cadastrado, escolha outro").css({display:"block"}).prop('class','erro');
+                    $("#enviar").prop('disabled', true);
+                }else{
+
+                    $("#erro_email2").css({display:"none"});
+                    $("#enviar").prop('disabled', false);
+                }
+            }, 'json');
+        });
+    });
+</script>
+</html>

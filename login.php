@@ -30,10 +30,13 @@
         #form{
             font-family: 'MedievalSharp', cursive;
             color: #a07e04;
-            margin-left: 310px;
+            margin-left: 50px;
+            position: relative;
+            left:-20px;
             border: 1px solid #856404;
             margin-top: 20px;
             padding: 15px;
+            height: 300px;
         }
 
         #foot{
@@ -56,6 +59,13 @@
 
         #fale:hover, #login:hover, #ver:hover, #home:hover, #logo:hover{
         	color: red;
+
+        }
+
+        #fale{
+
+            position: relative;
+            left: 450px;
         }
 
        
@@ -64,53 +74,11 @@
 
 <body>
 
-<!-- Navigation -->
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container" id="container">
-
-        <a class="navbar-brand" href="#" id="logo"> Ocarina </a>
-
-        <div id="busca">
-            <input type="text" id="txtBusca" placeholder="Buscar"/>
-            <input type="submit" name="buscar" value="Go" id="buscar">
-        </div>
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="index.php" id="home"> Home <span class="sr-only">(current)</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="login.php" id="login">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" id="ver"> Ver Carrinho</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="faleConosco.php" id="fale">Fale Conosco</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+    <div id="targetdiv"> </div>
 
 <!-- Page Content -->
 <div class="container">
 
-     <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="button"> Categorias
-            <span class="caret"></span></button>
-        <ul class="dropdown-menu" id="itens">
-            <li><a href="#">Poções</a></li>
-            <li><a href="#">Força</a></li>
-            <li><a href="#">Proteção</a></li>
-        </ul>
-    </div>
 
     <!-- Jumbotron Header -->
     <header class="jumbotron my-4" id="retangulo">
@@ -149,7 +117,7 @@
         </form>
 
         <span>
-            <a href="cadastro.php" id="fale"> <u>Não possui cadastro conosco?</u></a>
+            <a href="cadastroControle.php" id="fale"> <u>Não possui cadastro conosco?</u></a>
         </span>
 
     </div>
@@ -169,6 +137,8 @@
 <!-- Bootstrap core JavaScript -->
 <script src="startbootstrap-heroic-features-gh-pages/vendor/jquery/jquery.min.js"></script>
 <script src="startbootstrap-heroic-features-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script>$('#targetdiv').load('staticTop.php');</script>
+
 <script>
 
     function fecha(element){
