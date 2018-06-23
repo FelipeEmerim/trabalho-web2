@@ -66,7 +66,7 @@ session_start();
 
 <script>
     $("#logado").click(function(){
-        $("#escondida").fadeIn();
-    })
+        $("#escondida").fadeToggle();
+    });
 </script>
 
