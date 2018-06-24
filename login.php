@@ -62,13 +62,13 @@
 
         }
 
-        #fale{
+        #cadLink{
 
             position: relative;
             left: 450px;
         }
 
-       
+
     </style>
 </head>
 
@@ -117,7 +117,7 @@
         </form>
 
         <span>
-            <a href="cadastroControle.php" id="fale"> <u>Não possui cadastro conosco?</u></a>
+            <a href="cadastro.php" id="cadLink"> <u>Não possui cadastro conosco?</u></a>
         </span>
 
     </div>
@@ -183,7 +183,8 @@
                     $("#erro_php").text(data.msg).prop('class', 'sucesso');
                     setTimeout(function(){
                         window.location.replace('index.php');
-                    }, 3000);
+                    }, 4000);
+                    $('#targetdiv').load('staticTop.php');
 
                 }else{
                     $("#erro_php").text(data.msg).prop('class', 'erro');

@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+
+<?php
+session_start();
+if(!isset($_SESSION['usuario'])){
+    header('Location: login.php');
+}
+?>
 <html lang="en">
 
 <head>
@@ -21,37 +28,24 @@
 
     <style>
         @import url('https://fonts.googleapis.com/css?family=MedievalSharp');
-        #form{
-            font-family: 'MedievalSharp', cursive;
-            color: #a07e04;
-            margin-left: 310px;
-            border: 1px solid #856404;
-            margin-top: 20px;
-            width: 500px;
-            height: 300px;
-        }
+
         #foot{
             height: 80px;
             margin-top: 100px;
         }
-        #enviar{
-        	background: #393939;
-        	border:none;
-        	color: #856404 ;
-        }
-        #enviar:hover{
-        	color: red;
-        }
-        #fale:hover, #login:hover, #ver:hover, #home:hover, #logo:hover{
-        	color: red;
-        }
-       
+
     </style>
 </head>
 
 <body>
-    <div id="targetdiv">
-    </div>
+
+<!-- Navigation -->
+
+
+<div id = "targetdiv"></div>
+<!-- Page Content -->
+<div class="container">
+
 
     <!-- Jumbotron Header -->
     <header class="jumbotron my-4" id="retangulo">
@@ -59,30 +53,9 @@
         <p class="lead"> Aqui estão seus itens. </p>
 
     </header>
+    <div id="php_msg" class="secreto" style="margin-bottom: 40px"></div>
+    <div id="carrinho"></div>
 
-    <!-- Page Features -->
-    <div class="row text-center">
-
-
-        <form action="#" method="POST" id="form">
-
-                <label for="email">E-mail:</label> <br/>
-                <input id="email" type="text" size="50" name="replyto" required> <br/>
-
-                <label for="senha">Senha:</label> <br/>
-                <input id="senha" type="password" size="30" name="senha" required> <br/><br/>
-
-                <button type="submit" id="enviar"  name="enviar" value="1" formmethod="POST" class="btn btn-primary">Enviar</button><br/><br/>
-
-                <span class="nav-item">
-                    <a class="nav-link" href="cadastroControle.php" id="fale"> <u>Não possui cadastro conosco?</u></a>
-                </span>
-        </form>
-
-    </div>
-    <!-- /.row -->
-
-</div>
 <!-- /.container -->
 
 <!-- Footer -->
@@ -96,8 +69,29 @@
 <!-- Bootstrap core JavaScript -->
 <script src="startbootstrap-heroic-features-gh-pages/vendor/jquery/jquery.min.js"></script>
 <script src="startbootstrap-heroic-features-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script>$('#targetdiv').load('staticTop.php');</script>
+<script>
 
+    $('#targetdiv').load('staticTop.php');
+    $('#carrinho').load('itens.php');
+
+    function remove(produto){
+
+        $.post('carrinhoControle.php', {action: 'remove', nome: produto}, function(data){
+            if(typeof(data.sucesso) !== "undefined"){
+                $('#carrinho').load('itens.php');
+                $('#php_msg').text(produto+" removido do carrinho").prop('class', 'sucesso');
+            }
+        }, 'json');
+    }
+
+    function limpar(){
+        $.post('carrinhoControle.php', {action: 'limpar'}, function(){
+            $('#carrinho').load('itens.php');
+            $('#php_msg').text("Todos os itens removidos do carrinho").prop('class', 'sucesso');
+        });
+    }
+
+</script>
 
 </body>
 

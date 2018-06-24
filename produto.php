@@ -101,6 +101,7 @@
 
     <!-- Page Features -->
     <div class="row text-center">
+        <div class="secreto" id="mensagens"></div>
     	<div id = "prod">
     		<img id = "imgprod" src = "<?=htmlspecialchars($produto['imagem'])?>">
 
@@ -114,7 +115,7 @@
                     <span id="diminui" onclick="diminui()" class="botao">-</span>
                     <span id="quantidade">1</span><br>
                 </span>
-                <a href="#" class="btn btn-primary"> Adicionar ao carrinho </a>
+                <button type="button" onclick="cadastra()" class="btn btn-primary"> Adicionar ao carrinho </button>
 
     		</div>
 
@@ -167,6 +168,11 @@
 </body>
 <script>
     "use strict";
+
+    function fecha(element){
+        element.setAttribute("class", "secreto");
+    }
+
     function soma(){
 
         let element = document.getElementById("quantidade");
@@ -189,6 +195,41 @@
         }
 
     }
+
+    function cadastra(){
+
+        let url = window.location.href;
+        let cod = url.substring(url.indexOf('=')+1);
+        $.post('produtoControle.php', {action: "info", codigo: parseInt(cod)}, function(data){
+
+            if(typeof(data.redirect) === "boolean"){
+                window.location.replace('login.php');
+            }
+
+            if(typeof(data.falha) !== "undefined"){
+                $("#mensagens").text(data.msg).prop('class', 'erro').css({width:'700px'});
+
+                setTimeout(function(){
+                    fecha(document.getElementById('mensagens'));
+                }, 4000);
+                return;
+            }
+
+            $.post('produtoControle.php', {action: 'cadastra', codigo: cod, nome: data.nome, descricao: data.descricao,
+                    preco: data.preco, categoria: data.categoria,
+                    quantidade:parseInt(document.getElementById('quantidade').innerHTML)},
+                function(data){
+                    $("#mensagens").text(data.msg).prop('class', 'sucesso').css({width:'700px'});
+
+                    setTimeout(function(){
+                        fecha(document.getElementById('mensagens'));
+                    }, 4000);
+                }, 'json');
+
+        }, 'json');
+
+    }
+
 </script>
 
 	</html>

@@ -6,7 +6,7 @@
     $email = $_POST['email'];
     $email = trim($email);
     $s_email = filter_var($email, FILTER_SANITIZE_EMAIL);
-    if(!filter_var($s_email, FILTER_VALIDATE_EMAIL)){
+    if(!filter_var($s_email, FILTER_VALIDATE_EMAIL) || strlen($s_email > 70)){
         $data= ['sucesso'=>false, 'msg'=>'email invalido'];
         echo json_encode($data);
         exit();

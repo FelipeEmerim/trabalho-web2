@@ -149,7 +149,7 @@ if(isset($_SESSION['usuario'])){
     }
 
     function validaNome(){
-        if(!(this.nome.value.match(/^[a-zA-Z ]{3,}$/))) {
+        if(!(this.nome.value.match(/^[a-zA-Z ]{3,}$/)) || this.nome.value.length > 50) {
             document.getElementById('erro_nome').setAttribute('class', 'erro');
             setTimeout(function () {
                 fecha(document.getElementById('erro_email'));
@@ -164,7 +164,7 @@ if(isset($_SESSION['usuario'])){
     }
 
     function validaEndereco(){
-        if(!(this.endereco.value.match(/^[a-zA-Z0-9, ]{10,}$/))){
+        if(!(this.endereco.value.match(/^[a-zA-Z0-9, ]{10,}$/)) || this.endereco.value.length > 150){
             document.getElementById('erro_endereco').setAttribute('class', 'erro');
             setTimeout(function () {
                 fecha(document.getElementById('erro_endereco'));
@@ -179,7 +179,7 @@ if(isset($_SESSION['usuario'])){
     }
 
     function validaEmail(){
-        if(!(this.email.value.match(/[^@]+@[^@]+./))){
+        if(!(this.email.value.match(/[[^@]+@[^@]+./)) || this.email.value.length > 70){
 
             document.getElementById('erro_email').setAttribute('class', 'erro');
             setTimeout(function () {
@@ -233,6 +233,11 @@ if(isset($_SESSION['usuario'])){
 
                 if(data.sucesso){
                     $("#erro_php").text(data.msg).prop('class', 'sucesso');
+                    $('#targetdiv').load('staticTop.php');
+                    setTimeout(function(){
+                        window.location.replace('index.php');
+                    }, 4000);
+
 
                 }else{
                     $("#erro_php").text(data.msg).prop('class', 'erro');

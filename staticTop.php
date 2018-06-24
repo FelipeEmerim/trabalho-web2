@@ -4,7 +4,7 @@ session_start();
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container" id="container">
 
-        <a class="navbar-brand" href="#" id="logo"> Ocarina </a>
+        <a class="navbar-brand" href="index.php" id="logo"> Ocarina </a>
 
         <div id="busca">
             <input type="text" id="txtBusca" placeholder="Buscar"/>
@@ -21,7 +21,7 @@ session_start();
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" id="ver"> Ver Carrinho</a>
+                    <a class="nav-link" href="carrinho.php" id="ver"> Ver Carrinho</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="faleConosco.php" id="fale">Fale Conosco</a>

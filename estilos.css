@@ -46,7 +46,7 @@
             color: #a07e04;
             margin-left: 220px;
             border: 1px solid #856404;
-            margin-top: 60px;
+            margin-top: 150px;
             width: 800px;
             height: 300px;
             padding-top: 20px;
@@ -97,6 +97,7 @@
         font-family: 'MedievalSharp', cursive;
         font-size: 20px;
         border: none;
+        cursor:pointer;
       }
       #itens{
         background: transparent;
