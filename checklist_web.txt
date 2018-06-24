@@ -1,8 +1,4 @@
 - Back-end Fale conosco;
   - Enviar e-mail via php ao clicar em enviar;
-- Back-end login;
-- Criar tabela carrinho;
-- Caixa de busca funcional;
 - Menu de categorias;
-- Botão de compra leva para tela do carrinho;
 - Tela do carrinho: ao finalizar compra manda email para o usuario com o recibo e limpar carrinho
