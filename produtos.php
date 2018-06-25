@@ -3,7 +3,7 @@
 <?php
     $pdo = new PDO('mysql:host=localhost;dbname=loja_virtual', 'root', '');
 
-    if(isset($_POST['pesquisa'])){
+    if(isset($_POST['pesquisa']) && strlen($_POST['pesquisa'] > 0)){
         $pesquisa = filter_var($_POST['pesquisa'], FILTER_SANITIZE_STRING);
         $pesquisa = strtolower($pesquisa);
         $comando = $pdo->prepare('SELECT * FROM produtos WHERE LOWER(nome) LIKE ? OR LOWER(nome) LIKE  ? 

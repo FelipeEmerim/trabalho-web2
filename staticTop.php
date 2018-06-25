@@ -6,10 +6,10 @@ session_start();
 
         <a class="navbar-brand" href="index.php" id="logo"> Ocarina </a>
 
-        <div id="busca">
+        <form id="busca" onsubmit="busca(document.getElementById('txtBusca').value); return false">
             <input type="text" id="txtBusca" placeholder="Buscar"/>
-            <button type="button" name="buscar" id="buscar" onclick="busca()">Go</button>
-        </div>
+            <button type="submit" name="buscar" id="buscar">Go</button>
+        </form>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -57,9 +57,9 @@ session_start();
         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="button"> Categorias
             <span class="caret"></span></button>
         <ul id="itens">
-            <li><a href="#" onclick="categoria('potions')">Poções</a></li>
-            <li><a href="#" onclick="categoria('strength')">Força</a></li>
-            <li><a href="#" onclick="categoria('defense')">Proteção</a></li>
+            <li><a href="#" onclick="busca('potions')">Poções</a></li>
+            <li><a href="#" onclick="busca('strength')">Força</a></li>
+            <li><a href="#" onclick="busca('defense')">Proteção</a></li>
         </ul>
     </div>
 </div>
