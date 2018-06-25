@@ -33,10 +33,12 @@
 
         #retangulo{
 
-            background-image: url("https://pre00.deviantart.net/b631/th/pre/f/2015/229/8/3/skyrim_potions_2nd_set___tes_5_by_etrelley-d962aqm.png");
+            background: url("https://pre00.deviantart.net/b631/th/pre/f/2015/229/8/3/skyrim_potions_2nd_set___tes_5_by_etrelley-d962aqm.png") no-repeat;
+            background-size: 100% 500px;
             font-family: 'MedievalSharp', cursive;
             color: #a07e04;
-            height: 400px;
+            height: 500px;
+            width: 100%;
             -webkit-text-stroke-width: 1px;
             -webkit-text-stroke-color: #ffffff;
         }
@@ -98,15 +100,28 @@
         font-size: 20px;
         border: none;
         cursor:pointer;
+        position:fixed;
+          top: 10px;
+          z-index: 9999;
       }
       #itens{
-        background: transparent;
+          display:none;
+        background: black;
         color: #a07e04;
         font-family: 'MedievalSharp', cursive;
         font-size: 18px;
-        width: 40px;
-        position:absolute;
+        width: 150px;
+        position:fixed;
+        top: 70px;
+          left: 157px;
+          list-style-type: none;
+          z-index:99999;
         margin-left:3%;
+
+      }
+
+      #itens li{
+          background: black;
       }
 
       #destaque{
@@ -205,16 +220,16 @@
             background:black;
             border: 2px solid yellow;
             color: yellow;
-            width: 250px;
-            left: 870px;
+            width: 320px;
+            left: 820px;
             height: 100px;
             text-align:center;
             display:none;
-        }
+=        }
 
         #logado{
             margin-left: 100px;
             margin-right: 100px;
             cursor: pointer;
-        }
 
+        }

@@ -77,8 +77,6 @@
     <div id="targetdiv"> </div>
 
 <!-- Page Content -->
-<div class="container">
-
 
     <!-- Jumbotron Header -->
     <header class="jumbotron my-4" id="retangulo">
@@ -88,7 +86,7 @@
     </header>
 
     <!-- Page Features -->
-
+    <div class="container">
     <div class = "secreto" id = "erro_email">
         O email informado não é valido
         <span class = "close" onclick = "fecha(document.getElementById('erro_email'))">X</span>
@@ -138,6 +136,7 @@
 <script src="startbootstrap-heroic-features-gh-pages/vendor/jquery/jquery.min.js"></script>
 <script src="startbootstrap-heroic-features-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script>$('#targetdiv').load('staticTop.php');</script>
+<script src="pesquisa.js"></script>
 
 <script>
 

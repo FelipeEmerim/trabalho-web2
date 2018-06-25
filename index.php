@@ -35,19 +35,17 @@
     <div id="targetdiv"></div>
 
 <!-- Page Content -->
-<div class="container">
-
     <!-- Jumbotron Header -->
     <header class="jumbotron my-4" id="retangulo">
         <h1 class="display-3"> Bem-Vindo!!!</h1>
         <p class="lead"> Eu tenho uma seleção de coisas boas para vender, Estranho. O que você vai comprar?</p>
 
     </header>
-
+    <div class="container">
     <!-- Page Features -->
     <div id="container-produtos"></div>
 <!-- /.container -->
-
+    </div>
 <!-- Footer -->
 <footer class="py-5 bg-dark">
     <div class="container">
@@ -59,9 +57,19 @@
 <!-- Bootstrap core JavaScript -->
 <script src="startbootstrap-heroic-features-gh-pages/vendor/jquery/jquery.min.js"></script>
 <script src="startbootstrap-heroic-features-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="pesquisa.js"></script>
     <script>
         $('#targetdiv').load('staticTop.php');
-        $('#container-produtos').load('produtos.php');
+
+        let searchParams = new URLSearchParams(window.location.search);
+        let pesquisa = '';
+        if(searchParams.has('pesquisa')){
+            pesquisa = searchParams.get('pesquisa');
+            $('#container-produtos').load('produtos.php', {pesquisa:pesquisa});
+        }else{
+            $('#container-produtos').load('produtos.php');
+        }
+
     </script>
 
 

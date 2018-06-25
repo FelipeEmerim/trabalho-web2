@@ -55,7 +55,6 @@ if(isset($_SESSION['usuario'])){
 <body>
     <div id="targetdiv"></div>
 
-<div class="container">
 
     <!-- Jumbotron Header -->
     <header class="jumbotron my-4" id="retangulo">
@@ -63,7 +62,7 @@ if(isset($_SESSION['usuario'])){
         <p class="lead"> Se identifique aqui, estranho. </p>
 
     </header>
-
+    <div class="container">
     <!-- Page Features -->
     <!--erros -->
     <div id="erro_container">
@@ -138,7 +137,8 @@ if(isset($_SESSION['usuario'])){
 <!-- Bootstrap core JavaScript -->
 <script src="startbootstrap-heroic-features-gh-pages/vendor/jquery/jquery.min.js"></script>
 <script src="startbootstrap-heroic-features-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script>$('#targetdiv').load('staticTop.php');</script>
+<script>$('#targetdiv').load('staticTop.php');</script>
+<script src="pesquisa.js"></script>
 
 
 </body>
@@ -179,7 +179,7 @@ if(isset($_SESSION['usuario'])){
     }
 
     function validaEmail(){
-        if(!(this.email.value.match(/[[^@]+@[^@]+./)) || this.email.value.length > 70){
+        if(!(this.email.value.match(/[^@]+@[^@]+./)) || this.email.value.length > 70){
 
             document.getElementById('erro_email').setAttribute('class', 'erro');
             setTimeout(function () {

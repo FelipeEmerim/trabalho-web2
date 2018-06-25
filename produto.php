@@ -50,6 +50,14 @@
         margin-left: 2%;
         border-radius: 3%;
         font-family: 'MedievalSharp', cursive;
+        color: #a07e04;
+
+    }
+
+    #recomend, #recomendados{
+        font-family: 'MedievalSharp', cursive;
+        color: #a07e04;
+
 
     }
 
@@ -90,7 +98,7 @@
     <div id="targetdiv"></div>
 
 <!-- Page Content -->
-<div class="container">
+
 
     <!-- Jumbotron Header -->
     <header class="jumbotron my-4" id="retangulo">
@@ -98,7 +106,7 @@
         <p class="lead"> Eu tenho uma seleção de coisas boas para vender, Estranho. O que você vai comprar?</p>
 
     </header>
-
+    <div class="container">
     <!-- Page Features -->
     <div class="row text-center">
         <div class="secreto" id="mensagens"></div>
@@ -126,7 +134,7 @@
     </div>
     <!-- /.row -->
     <span id="recomendados" class="item">Recomendados</span>
-    <div class="row text-center">
+    <div class="row text-center" id="recomend">
         <?php
         foreach($data as $row):
             ?>
@@ -162,7 +170,8 @@
 <!-- Bootstrap core JavaScript -->
 <script src="startbootstrap-heroic-features-gh-pages/vendor/jquery/jquery.min.js"></script>
 <script src="startbootstrap-heroic-features-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script>$('#targetdiv').load('staticTop.php');</script>
+<script>$('#targetdiv').load('staticTop.php');</script>
+<script src="pesquisa.js"></script>
 
 
 </body>

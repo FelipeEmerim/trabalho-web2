@@ -8,7 +8,7 @@ session_start();
 
         <div id="busca">
             <input type="text" id="txtBusca" placeholder="Buscar"/>
-            <input type="submit" name="buscar" value="Go" id="buscar">
+            <button type="button" name="buscar" id="buscar" onclick="busca()">Go</button>
         </div>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,9 +30,9 @@ session_start();
                 if(isset($_SESSION['usuario'])):
                 ?>
                 <li class="nav-item">
-                    <a class="nav-link" id="logado"><?="$_SESSION[usuario]"?></a>
+                    <a class="nav-link" id="logado"><?=htmlspecialchars($_SESSION['usuario'])?></a>
                     <div id = "escondida">
-                        <span><?="$_SESSION[email]"?></span><br><br>
+                        <span><?=htmlspecialchars($_SESSION['email'])?></span><br><br>
                         <a href = "logout.php">logout</a>
                     </div>
                 </li>
@@ -56,10 +56,10 @@ session_start();
      <div class="dropdown">
         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="button"> Categorias
             <span class="caret"></span></button>
-        <ul class="dropdown-menu" id="itens">
-            <li><a href="#">Poções</a></li>
-            <li><a href="#">Força</a></li>
-            <li><a href="#">Proteção</a></li>
+        <ul id="itens">
+            <li><a href="#" onclick="categoria('potions')">Poções</a></li>
+            <li><a href="#" onclick="categoria('strength')">Força</a></li>
+            <li><a href="#" onclick="categoria('defense')">Proteção</a></li>
         </ul>
     </div>
 </div>
@@ -68,5 +68,9 @@ session_start();
     $("#logado").click(function(){
         $("#escondida").fadeToggle();
     });
+
+    $("#button").click(function(){
+        $("#itens").fadeToggle();
+    })
 </script>
 

@@ -44,8 +44,6 @@ if(!isset($_SESSION['usuario'])){
 
 <div id = "targetdiv"></div>
 <!-- Page Content -->
-<div class="container">
-
 
     <!-- Jumbotron Header -->
     <header class="jumbotron my-4" id="retangulo">
@@ -53,12 +51,14 @@ if(!isset($_SESSION['usuario'])){
         <p class="lead"> Aqui estão seus itens. </p>
 
     </header>
+<div class="container">
     <div id="php_msg" class="secreto" style="margin-bottom: 40px"></div>
     <div id="carrinho"></div>
 
 <!-- /.container -->
 
 <!-- Footer -->
+</div>
 <footer class="py-5 bg-dark" id="foot">
     <div class="container">
         <p class="m-0 text-center text-white">Copyright &copy; Ocarina 2018</p>
@@ -69,6 +69,7 @@ if(!isset($_SESSION['usuario'])){
 <!-- Bootstrap core JavaScript -->
 <script src="startbootstrap-heroic-features-gh-pages/vendor/jquery/jquery.min.js"></script>
 <script src="startbootstrap-heroic-features-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="pesquisa.js"></script>
 <script>
 
     $('#targetdiv').load('staticTop.php');

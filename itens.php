@@ -22,11 +22,11 @@ $acm = 0
             foreach($_SESSION['carrinho'] as $produto):?>
 
                 <tr>
-                    <td width="285"><?="$produto[nome]"?></td>
-                    <td width="285"><?="$produto[categoria]"?></td>
-                    <td width="285"><?="$produto[descricao]"?></td>
-                    <td width="285"><?="$produto[valor]"?></td>
-                    <td><button class="btn btn-danger" onclick="remove('<?=$produto['nome']?>')">X</button></td>
+                    <td width="285"><?=htmlspecialchars($produto['nome'])?></td>
+                    <td width="285"><?=htmlspecialchars($produto['categoria'])?></td>
+                    <td width="285"><?=htmlspecialchars($produto['descricao'])?></td>
+                    <td width="285"><?=htmlspecialchars($produto['valor'])?></td>
+                    <td><button class="btn btn-danger" onclick="remove('<?=htmlspecialchars($produto['nome'])?>')">X</button></td>
 
 
                 </tr>
@@ -39,7 +39,7 @@ $acm = 0
                 <td width="285"></td>
                 <td width="285"></td>
                 <td width="285"></td>
-                <td width="570">Total do carrinho: R$: <?="$acm"?></td>
+                <td width="570">Total do carrinho: R$: <?=htmlspecialchars($acm)?></td>
 
 
             </tr>
