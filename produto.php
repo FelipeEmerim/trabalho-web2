@@ -81,13 +81,23 @@
     #soma{
         left:20px;
         top:-10px;
-        cursor:pointer;
+
     }
 
     #diminui{
         top:15px;
         left:-14px;
+    }
+
+    #soma, #diminui{
+
         cursor:pointer;
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
     }
     </style>
 

@@ -14,7 +14,9 @@ $acm = 0
                 <th width="285"> Produto </th>
                 <th width="285"> Categoria </th>
                 <th width="285"> Descrição </th>
-                <th width="285"> Valor </th>
+                <th width="30">Quantidade</th>
+                <th width="285">Preco</th>
+                <th width="285"> Total </th>
                 <th width="285"> Remover Item</th>
 
             </tr>
@@ -25,6 +27,8 @@ $acm = 0
                     <td width="285"><?=htmlspecialchars($produto['nome'])?></td>
                     <td width="285"><?=htmlspecialchars($produto['categoria'])?></td>
                     <td width="285"><?=htmlspecialchars($produto['descricao'])?></td>
+                    <td width="30"><?=htmlspecialchars($produto['quantidade'])?></td>
+                    <td width="285"><?=htmlspecialchars($produto['preco'])?></td>
                     <td width="285"><?=htmlspecialchars($produto['valor'])?></td>
                     <td><button class="btn btn-danger" onclick="remove('<?=htmlspecialchars($produto['nome'])?>')">X</button></td>
 
@@ -38,6 +42,8 @@ $acm = 0
             <tr>
                 <td width="285"></td>
                 <td width="285"></td>
+                <td width="285"></td>
+                <td width="30"></td>
                 <td width="285"></td>
                 <td width="570">Total do carrinho: R$: <?=htmlspecialchars($acm)?></td>
 

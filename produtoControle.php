@@ -59,7 +59,8 @@ switch($_POST['action']){
 
         $valor = $quantidade*$preco;
 
-        $produto = array('nome'=>$nome, 'descricao'=>$descricao, 'categoria'=>$categoria, 'valor'=>$valor);
+        $produto = array('nome'=>$nome, 'descricao'=>$descricao, 'categoria'=>$categoria, 'quantidade'=>$quantidade,
+            'preco'=>$preco, 'valor'=>$valor);
 
         array_push($_SESSION['carrinho'], $produto);
         $data = ['sucesso'=>true, 'msg'=>"Produto $nome adicionado ao carrinho"];
