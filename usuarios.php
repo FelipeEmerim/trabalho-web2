@@ -73,7 +73,7 @@
 <script src="startbootstrap-heroic-features-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script>
     $('#targetdiv').load('staticTop.php');
-    $('#usuarios').load('usuariosTabela.php', {action:'tabela'});
+    $('#usuarios').load('usuariosControle.php', {action:'tabela'});
 </script>
 <script src="pesquisa.js"></script>
 
@@ -85,18 +85,18 @@
 
     function remove(cod){
 
-        $.post('usuariosTabela.php', {action: 'remove', codigo: cod}, function(){
+        $.post('usuariosControle.php', {action: 'remove', codigo: cod}, function(){
             $('#mensagens').text('Usuario excluido com sucesso').prop('class', 'sucesso');
             setTimeout(function(){
                 fecha(document.getElementById('mensagens'));
             }, 4000);
-            $('#usuarios').load('usuariosTabela.php', {action: 'tabela'});
+            $('#usuarios').load('usuariosControle.php', {action: 'tabela'});
         });
     }
 
     function buscaUsuario(pesq){
         console.log(pesq);
-        $('#usuarios').load('usuariosTabela.php', {action: 'tabela', pesquisa: pesq});
+        $('#usuarios').load('usuariosControle.php', {action: 'tabela', pesquisa: pesq});
     }
 </script>
 
