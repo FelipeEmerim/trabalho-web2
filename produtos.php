@@ -1,3 +1,8 @@
+<?php
+if(!isset($_POST['request'])){
+    header('Location: index.php');
+}
+?>
 <div class="row text-center" id = "destaque">
 
 <?php
@@ -6,7 +11,7 @@
     if(isset($_POST['pesquisa']) && strlen($_POST['pesquisa']) > 0){
 
         $pesquisa = filter_var($_POST['pesquisa'], FILTER_SANITIZE_STRING);
-        $pesquisa = strtolower($pesquisa);
+        $pesquisa = strtolower(trim($pesquisa));
         $comando = $pdo->prepare('SELECT * FROM produtos WHERE LOWER(nome) LIKE ? OR LOWER(nome) LIKE  ? 
 OR LOWER(categoria) LIKE ? OR LOWER(nome) LIKE ?');
         $comando->execute(array("$pesquisa%", "% $pesquisa%", $pesquisa, $pesquisa));

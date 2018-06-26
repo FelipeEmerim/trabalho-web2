@@ -1,4 +1,7 @@
 <?php
+if(!(isset($_POST['action']))){
+    header('Location: index.php');
+}
 session_start();
 
 if(!(isset($_SESSION['usuario']))){

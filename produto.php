@@ -108,6 +108,7 @@
     <div id="targetdiv"></div>
 
 <!-- Page Content -->
+    <div class="container">
 
 
     <!-- Jumbotron Header -->
@@ -116,7 +117,6 @@
         <p class="lead"> Eu tenho uma seleção de coisas boas para vender, Estranho. O que você vai comprar?</p>
 
     </header>
-    <div class="container">
     <!-- Page Features -->
     <div class="row text-center">
         <div class="secreto" id="mensagens"></div>

@@ -1,11 +1,27 @@
 <?php
+if(!(isset($_POST['request']))){
+    header('Location: index.php');
+}
 session_start();
 $acm = 0
 ?>
 
+<head>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=MedievalSharp');
+
+        #tabela{
+            color: #a07e04;
+            font-family: 'MedievalSharp', cursive;
+
+        }
+
+    </style>
+</head>
+
 <!-- Page Features -->
 <div class="row text-center">
-    <table border ="1">
+    <table border ="1" id="tabela">
 
         <?php
         if(isset($_SESSION['carrinho'])):

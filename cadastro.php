@@ -55,6 +55,7 @@ if(isset($_SESSION['usuario'])){
 <body>
     <div id="targetdiv"></div>
 
+    <div class="container">
 
     <!-- Jumbotron Header -->
     <header class="jumbotron my-4" id="retangulo">
@@ -62,7 +63,6 @@ if(isset($_SESSION['usuario'])){
         <p class="lead"> Se identifique aqui, estranho. </p>
 
     </header>
-    <div class="container">
     <!-- Page Features -->
     <!--erros -->
     <div id="erro_container">

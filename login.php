@@ -77,6 +77,7 @@
     <div id="targetdiv"> </div>
 
 <!-- Page Content -->
+    <div class="container">
 
     <!-- Jumbotron Header -->
     <header class="jumbotron my-4" id="retangulo">
@@ -86,7 +87,6 @@
     </header>
 
     <!-- Page Features -->
-    <div class="container">
     <div class = "secreto" id = "erro_email">
         O email informado não é valido
         <span class = "close" onclick = "fecha(document.getElementById('erro_email'))">X</span>
@@ -177,21 +177,29 @@
     }
 
     function valida(){
-            $.post('loginControle.php', {email: $("#email").val(), senha: $("#senha").val()}, function (data) {
-                if(data.sucesso){
+        if(validaSenha() & validaEmail()) {
+
+            $.post('loginControle.php', {
+                email: $("#email").val(),
+                senha: $("#senha").val(),
+                request: true
+            }, function (data) {
+                if (data.sucesso) {
                     $("#erro_php").text(data.msg).prop('class', 'sucesso');
-                    setTimeout(function(){
+                    setTimeout(function () {
                         window.location.replace('index.php');
                     }, 4000);
                     $('#targetdiv').load('staticTop.php');
 
-                }else{
+                } else {
                     $("#erro_php").text(data.msg).prop('class', 'erro');
                 }
 
-                setTimeout(function(){
-                    fecha(document.getElementById("erro_php"))}, 4000);
+                setTimeout(function () {
+                    fecha(document.getElementById("erro_php"))
+                }, 4000);
             }, 'json');
+        }
 
             return false;
     }

@@ -1,5 +1,8 @@
 <?php
 
+    if(!(isset($_POST['request']))){
+        header('Location: login.php');
+    }
     session_start();
     $pdo = new PDO('mysql:host=localhost;dbname=loja_virtual', 'root', '');
 

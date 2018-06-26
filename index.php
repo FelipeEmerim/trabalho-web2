@@ -33,6 +33,7 @@
 
 <body>
     <div id="targetdiv"></div>
+    <div class="container">
 
 <!-- Page Content -->
     <!-- Jumbotron Header -->
@@ -41,7 +42,6 @@
         <p class="lead"> Eu tenho uma seleção de coisas boas para vender, Estranho. O que você vai comprar?</p>
 
     </header>
-    <div class="container">
     <!-- Page Features -->
     <div id="container-produtos"></div>
 <!-- /.container -->
@@ -65,9 +65,9 @@
         let pesquisa = '';
         if(searchParams.has('pesquisa')){
             pesquisa = searchParams.get('pesquisa');
-            $('#container-produtos').load('produtos.php', {pesquisa:pesquisa});
+            $('#container-produtos').load('produtos.php', {pesquisa:pesquisa, request:true});
         }else{
-            $('#container-produtos').load('produtos.php');
+            $('#container-produtos').load('produtos.php', {request:true});
         }
 
     </script>

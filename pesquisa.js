@@ -5,5 +5,5 @@ function busca(cat){
         return;
     }
 
-    $('#container-produtos').load('produtos.php', {pesquisa: cat});
+    $('#container-produtos').load('produtos.php', {pesquisa: cat, request:true});
 }

@@ -1,7 +1,7 @@
 <?php
 
 if(!isset($_POST['action'])){
-    exit();
+    header('Location: index.php');
 }
 
 session_start();

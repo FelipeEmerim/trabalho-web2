@@ -34,7 +34,7 @@
         #retangulo{
 
             background: url("https://pre00.deviantart.net/b631/th/pre/f/2015/229/8/3/skyrim_potions_2nd_set___tes_5_by_etrelley-d962aqm.png") no-repeat;
-            background-size: 100% 500px;
+            background-size: 100% 450px;
             font-family: 'MedievalSharp', cursive;
             color: #a07e04;
             height: 500px;
@@ -232,4 +232,8 @@
             margin-right: 100px;
             cursor: pointer;
 
+        }
+
+        #b1, #b2, #b3{
+            cursor: pointer;
         }

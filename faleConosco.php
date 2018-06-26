@@ -32,6 +32,7 @@
 <!-- Navigation -->
 
 
+    <div class="container">
 
 <!-- Page Content -->
 
@@ -41,7 +42,6 @@
         <p class="lead"> Hey estranho, aqui é nosso canal de contato. </p>
 
     </header>
-    <div class="container">
     <!-- Page Features -->
     <div class="row text-center">
 

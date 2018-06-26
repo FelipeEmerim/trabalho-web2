@@ -44,14 +44,14 @@ if(!isset($_SESSION['usuario'])){
 
 <div id = "targetdiv"></div>
 <!-- Page Content -->
+<div class="container">
 
-    <!-- Jumbotron Header -->
+<!-- Jumbotron Header -->
     <header class="jumbotron my-4" id="retangulo">
         <h1 class="display-3"> Carrinho!!!</h1>
         <p class="lead"> Aqui estão seus itens. </p>
 
     </header>
-<div class="container">
     <div id="php_msg" class="secreto" style="margin-bottom: 40px"></div>
     <div id="carrinho"></div>
 
@@ -73,13 +73,13 @@ if(!isset($_SESSION['usuario'])){
 <script>
 
     $('#targetdiv').load('staticTop.php');
-    $('#carrinho').load('itens.php');
+    $('#carrinho').load('itens.php', {request:true});
 
     function remove(produto){
 
         $.post('carrinhoControle.php', {action: 'remove', nome: produto}, function(data){
             if(typeof(data.sucesso) !== "undefined"){
-                $('#carrinho').load('itens.php');
+                $('#carrinho').load('itens.php', {request:true});
                 $('#php_msg').text(produto+" removido do carrinho").prop('class', 'sucesso');
             }
         }, 'json');
@@ -87,7 +87,7 @@ if(!isset($_SESSION['usuario'])){
 
     function limpar(){
         $.post('carrinhoControle.php', {action: 'limpar'}, function(){
-            $('#carrinho').load('itens.php');
+            $('#carrinho').load('itens.php', {request:true});
             $('#php_msg').text("Todos os itens removidos do carrinho").prop('class', 'sucesso');
         });
     }
