@@ -236,7 +236,7 @@ if(isset($_SESSION['usuario'])){
                     $('#targetdiv').load('staticTop.php');
                     setTimeout(function(){
                         window.location.replace('index.php');
-                    }, 4000);
+                    }, 2500);
 
 
                 }else{

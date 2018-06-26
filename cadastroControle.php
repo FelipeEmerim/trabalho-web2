@@ -93,6 +93,7 @@
             $data= ['sucesso'=>true, 'msg'=>'cadastro realizado com sucesso'];
             $_SESSION['usuario'] = $s_nome;
             $_SESSION['email'] = $s_email;
+            $_SESSION['admin'] = 0;
             echo json_encode($data);
             exit();
             break;

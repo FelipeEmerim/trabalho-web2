@@ -188,7 +188,7 @@
                     $("#erro_php").text(data.msg).prop('class', 'sucesso');
                     setTimeout(function () {
                         window.location.replace('index.php');
-                    }, 4000);
+                    }, 2500);
                     $('#targetdiv').load('staticTop.php');
 
                 } else {

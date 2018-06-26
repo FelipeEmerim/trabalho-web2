@@ -6,9 +6,9 @@ session_start();
 
         <a class="navbar-brand" href="index.php" id="logo"> Ocarina </a>
 
-        <form id="busca" onsubmit="busca(document.getElementById('txtBusca').value); return false">
+        <form id="busca" class="busca" onsubmit="busca(document.getElementById('txtBusca').value); return false">
             <input type="text" id="txtBusca" placeholder="Buscar"/>
-            <button type="submit" name="buscar" id="buscar">Go</button>
+            <button class="buscar" type="submit" name="buscar" id="buscar">Go</button>
         </form>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,13 +32,18 @@ session_start();
                 <li class="nav-item">
                     <a class="nav-link" id="logado"><?=htmlspecialchars($_SESSION['usuario'])?></a>
                     <div id = "escondida">
-                        <span><?=htmlspecialchars($_SESSION['email'])?></span><br><br>
+                        <span><?=htmlspecialchars($_SESSION['email'])?></span><br>
+                        <?php if($_SESSION['admin'] == 1):?>
+                        <a href="usuarios.php">Ver usuarios</a><br>
+                        <?php endif; ?>
                         <a href = "logout.php">logout</a>
                     </div>
                 </li>
+
                 <?php
                 else:
                 ?>
+
                 <li class="nav-item">
                     <a class="nav-link" href="login.php" id="login">Login</a>
                 </li>

@@ -54,7 +54,7 @@
             padding-top: 20px;
         }
 
-        #busca{
+        .busca{
             background-color:white;
             border:solid 1px;
             border-radius:15px;
@@ -73,7 +73,7 @@
             width:260px;
             border-radius:15px;
         }
-        #buscar{
+        .buscar{
             position: relative;
             left: 210px;
             top: -32px;

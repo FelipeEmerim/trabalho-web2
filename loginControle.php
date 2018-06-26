@@ -51,5 +51,6 @@
     $data = ['sucesso'=>true, 'msg'=>"Seja bem-vindo: $result[nome]"];
     $_SESSION['usuario'] = $result['nome'];
     $_SESSION['email'] = $result['email'];
+    $_SESSION['admin'] = $result['admin'];
     echo json_encode($data);
 ?>
