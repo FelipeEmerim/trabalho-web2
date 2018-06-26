@@ -17,6 +17,7 @@ switch($_POST['action']) {
             $data = $comando->fetchAll(PDO::FETCH_ASSOC);
         }else{
             $pesquisa = strtolower(trim($_POST['pesquisa']));
+            $pesquisa = filter_var($pesquisa, FILTER_SANITIZE_STRING);
 
             $comando = $pdo->prepare('SELECT * FROM cadastros WHERE LOWER(nome) LIKE ? OR LOWER(nome) LIKE ? 
             OR LOWER(nome) LIKE ? OR LOWER(sexo) LIKE  ? OR LOWER(data) LIKE ? OR LOWER(email) LIKE ? OR 
