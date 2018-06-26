@@ -195,7 +195,7 @@ if(isset($_SESSION['usuario'])){
     }
 
     function validaData(){
-        if(!(this.dt.value.match(/\d{2}\/\d{2}\/\d{4}/))){
+        if(!(this.dt.value.match(/^\d{2}\/\d{2}\/\d{4}$/))){
             document.getElementById("erro_data").setAttribute("class", "erro");
             setTimeout(function(){
                 fecha(document.getElementById("erro_data"))

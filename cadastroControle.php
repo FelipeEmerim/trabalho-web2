@@ -46,8 +46,13 @@
 
             $date = $_POST['data'];
             $s_date = trim($date);
+            $ano_atual = date('Y');
+            $dia = intval(substr($s_date, 0, 2));
+            $mes = intval(substr($s_date, 3, 2));
+            $ano = intval(substr($s_date, 6, 4));
             if (!filter_var($s_date, FILTER_VALIDATE_REGEXP, array(
-                "options"=>array("regexp"=>"/\d{2}\/\d{2}\/\d{4}/")))){
+                "options"=>array("regexp"=>"/^\d{2}\/\d{2}\/\d{4}$/"))) || !(checkdate($mes, $dia, $ano)) ||
+                $ano >= intval(date('Y'))){
                 $data= ['sucesso'=>false, 'msg'=>'data de nascimento invalida'];
                 echo json_encode($data);
                 exit();
